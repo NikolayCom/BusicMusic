@@ -7,12 +7,24 @@
 
 import UIKit
 import CoreData
+import Auth
+import Core
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+
+    private var coordinator: Coordinator!
+    private var assembly: BaseAssembly?
+
     func application(
-        _ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        self.setupWindow()
+        self.setupApp()
+
         return true
     }
 
@@ -57,5 +69,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    // MARK: Private methods
+
+    private func setupWindow() {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.makeKeyAndVisible()
+    }
+
+    private func setupApp() {
+        guard let window = window else { return }
+
+        let commonAssembly = self.setupAuthAssembly(window: window)
+        self.coordinator = commonAssembly.coordinator()
+
+        window.rootViewController = self.coordinator.rootViewController
+
+        self.coordinator.start()
+
+        self.assembly = commonAssembly
+    }
+
+    private func setupAuthAssembly(window: UIWindow) -> AuthAssemblyImpl {
+        AuthAssemblyImpl(
+            window: window
+        )
+    }
 }
 
