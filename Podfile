@@ -26,6 +26,8 @@ def developmet_pods
   pod "Constants", :path => "./Modules/Constants"
   pod "UIComponents", :path => "./Modules/UIComponents"
   pod "Extensions", :path => "./Modules/Extensions"
+# App Dependencies
+  pod "Auth", :path => "./Modules/Auth"
 end
 
 # Targerts
