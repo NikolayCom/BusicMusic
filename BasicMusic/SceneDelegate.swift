@@ -1,6 +1,6 @@
 import UIKit
-import Auth
 import Core
+import Auth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -32,9 +32,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: Private methods
 
     private func setupAuth() {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
-            return
-        }
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        else { return }
         window = UIWindow(windowScene: windowScene)
 
         guard let window = window else { return }
