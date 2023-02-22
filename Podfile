@@ -32,7 +32,6 @@ def developmet_pods
   pod "UIComponents", :path => "./Modules/UIComponents"
   pod "Extensions", :path => "./Modules/Extensions"
   pod "UseCases", :path => "./Modules/UseCases"
-# App Dependencies
   pod "Auth", :path => "./Modules/Auth"
 end
 

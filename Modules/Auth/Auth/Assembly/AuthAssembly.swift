@@ -1,4 +1,5 @@
 import Core
+import UseCases
 
 // MARK: - AuthAssembly
 
@@ -13,13 +14,16 @@ protocol AuthAssembly: BaseAssembly {
 public final class AuthAssemblyImpl: BaseAssembly {
     let rootAssembly: RootAssembly
     let window: UIWindow
+    let appDependency: AppDependency
 
     public init(
         window: UIWindow,
-        rootAssembly: RootAssembly = RootAssemblyImpl()
+        rootAssembly: RootAssembly = RootAssemblyImpl(),
+        appDependency: AppDependency
     ) {
         self.window = window
         self.rootAssembly = rootAssembly
+        self.appDependency = appDependency
     }
 
     @available(*, unavailable)
@@ -38,7 +42,8 @@ extension AuthAssemblyImpl: AuthAssembly {
     func makeSplash(output: SplashOutputInterface?) -> SplashViewController {
         SplashSceneAssembly(
             config: SplashConfigModel(
-                output: output
+                output: output,
+                dependency: self.appDependency
             )
         ).controller as! SplashViewController
     }

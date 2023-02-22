@@ -1,10 +1,12 @@
+import Core
+
 // MARK: - AuthUseCase
 
 public protocol AuthUseCase {}
 
 // MARK: - AuthUseCaseImpl
 
-class AuthUseCaseImpl {}
+public class AuthUseCaseImpl: BaseUseCase {}
 
 // MARK: - AuthUseCase
 

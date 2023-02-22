@@ -2,7 +2,7 @@ import Core
 
 // MARK: - SplashViewInterface
 
-public protocol SplashViewInterface: BaseViewInterface {}
+protocol SplashViewInterface: BaseViewInterface {}
 
 // MARK: - SplashView
 

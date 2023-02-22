@@ -16,5 +16,5 @@ Pod::Spec.new do |spec|
   spec.frameworks = "Foundation"
   
   spec.dependency "Core"
-
+  spec.dependency "UseCases"
 end

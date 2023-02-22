@@ -1,6 +1,7 @@
 import UIKit
 import Core
 import Auth
+import UseCases
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -8,6 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private var coordinator: Coordinator!
     private var assembly: BaseAssembly?
+    private var appDependency: AppDependency = AppDependencyImpl()
 
     func scene(
         _ scene: UIScene,
@@ -55,7 +57,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func setupAuthAssembly(window: UIWindow) -> AuthAssemblyImpl {
         AuthAssemblyImpl(
-            window: window
+            window: window,
+            appDependency: self.appDependency
         )
     }
 }
