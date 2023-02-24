@@ -17,4 +17,5 @@ Pod::Spec.new do |spec|
 
   spec.dependency "Core"
   spec.dependency "UseCases"
+  spec.dependency "Resources"
 end

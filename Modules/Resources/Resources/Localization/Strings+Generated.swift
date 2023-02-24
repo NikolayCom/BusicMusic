@@ -9,7 +9,13 @@ import Foundation
 
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
-internal enum S {
+public enum S {
+  /// Kolya
+  public static let title = S.tr("Localizable", "title", fallback: "Kolya")
+  public enum Base {
+    /// My title
+    public static let title = S.tr("Localizable", "base.title", fallback: "My title")
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

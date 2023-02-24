@@ -1,5 +1,6 @@
 import Core
 import Constants
+import Resources
 
 // MARK: - Constants
 
@@ -22,6 +23,12 @@ class SplashView: BaseView<SplashViewModelInterface> {
         super.setup()
     }
 
+    // MARK: - Life cycle
+
+    override func viewWillAppear() {
+        super.viewWillAppear()
+    }
+    
     // MARK: - Setups
 
     override func setupUI() {
