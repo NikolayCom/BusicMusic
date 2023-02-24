@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
   spec.source_files  = "Auth/**/*.{h,m,swift}"
 
   spec.frameworks = "Foundation"
-  
+
   spec.dependency "Core"
   spec.dependency "UseCases"
 end
