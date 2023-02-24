@@ -17,6 +17,11 @@ def external_pods
 # Initialization
   pod 'Then', '~> 2.7.0'
 
+# Firebase
+  pod 'Firebase'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'Firebase/Crashlytics'
 end
 
 # Development
@@ -26,6 +31,9 @@ def developmet_pods
   pod "Constants", :path => "./Modules/Constants"
   pod "UIComponents", :path => "./Modules/UIComponents"
   pod "Extensions", :path => "./Modules/Extensions"
+  pod "UseCases", :path => "./Modules/UseCases"
+  pod "Auth", :path => "./Modules/Auth"
+  pod "Resources", :path => "./Modules/Resources"
 end
 
 # Targerts
