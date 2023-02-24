@@ -1,5 +1,4 @@
 import Foundation
-import Rswift
 
 public enum Resources {
     // public static var strings

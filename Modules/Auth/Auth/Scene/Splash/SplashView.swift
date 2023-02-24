@@ -8,7 +8,6 @@ private extension AppearanceConstants {}
 private extension DataConstants {}
 
 private extension GridConstants {}
->>>>>>> b7100299b39107e3ed5ca0911ca8a226e2ce9d33
 
 // MARK: - SplashViewInterface
 
