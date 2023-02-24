@@ -17,6 +17,4 @@ Pod::Spec.new do |spec|
   spec.frameworks = "Foundation"
 
   spec.dependency "Core"
-  spec.dependency "UseCases"
-  spec.dependency 'R.swift'
 end
