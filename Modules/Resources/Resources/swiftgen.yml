@@ -18,6 +18,7 @@
           output: Localization/Strings+Generated.swift
           params:
             enumName: S
+            publicAccess: true
 
 
 ## Generate constants for your Assets Catalogs, including constants for images, colors, ARKit resources, etc.

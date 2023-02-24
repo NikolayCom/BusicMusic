@@ -18,4 +18,5 @@ Pod::Spec.new do |spec|
   spec.dependency "lottie-ios"
   spec.dependency "Core"
   spec.dependency "UseCases"
+  spec.dependency "Resources"
 end
