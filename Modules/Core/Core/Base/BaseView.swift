@@ -54,3 +54,5 @@ open class BaseView<ViewModel>: UIView {
 // MARK: - BaseViewInterface
 
 extension BaseView: BaseViewInterface {}
+
+extension BaseView: BaseViewProtocol {}
