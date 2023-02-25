@@ -27,9 +27,7 @@
 			</array>
 		</dict>
 	</dict>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch Screen.storyboard</string>
 </dict>
 </plist>

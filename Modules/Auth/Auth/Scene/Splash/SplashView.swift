@@ -22,7 +22,7 @@ class SplashView: BaseView<SplashViewModelInterface> {
     override func setupUI() {
         super.setupUI()
         
-        backgroundColor = appearance.whiteColor
+        backgroundColor = .red
     }
 
     override func setupConstraints() {
