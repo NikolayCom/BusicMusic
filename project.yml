@@ -2,7 +2,6 @@ name: BasicMusic
 
 configs:
     Debug: debug
-    Internal: debug
     AppStore: release
 
 options:
@@ -31,14 +30,13 @@ targets:
           PRODUCT_BUNDLE_IDENTIFIER: com.busicmusic.debug
           PRODUCT_NAME: BasicMusic
           DISPLAY_NAME: "$(PRODUCT_NAME) $(CONFIGURATION)"
-        Internal:
-          PRODUCT_BUNDLE_IDENTIFIER: com.busicmusic.internal
-          PRODUCT_NAME: BasicMusic
-          DISPLAY_NAME: "$(PRODUCT_NAME) $(CONFIGURATION)"
         AppStore:
           PRODUCT_BUNDLE_IDENTIFIER: com.busicmusic.appstore
           PRODUCT_NAME: BasicMusic
           DISPLAY_NAME: "$(PRODUCT_NAME) $(CONFIGURATION)"
+    postCompileScripts:
+      - path: Scripts/swiftlint.sh
+        name: SwiftLint
 
 schemes:
   Debug:
@@ -46,11 +44,6 @@ schemes:
     - ConfigBasedScheme
     run:
       config: Debug
-  Internal:
-    templates:
-    - ConfigBasedScheme
-    run:
-      config: Internal
   AppStore:
     templates:
     - ConfigBasedScheme
