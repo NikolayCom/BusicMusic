@@ -3,7 +3,8 @@ Pod::Spec.new do |spec|
   spec.version      = "0.0.1"
   spec.summary      = "UseCases"
   spec.description  = <<-DESC
-  Extensions module
+  Design module
+
                    DESC
   spec.homepage     = "https://nikolaypivnik.com"
   spec.license      = "BSD"
@@ -15,5 +16,5 @@ Pod::Spec.new do |spec|
 
   spec.frameworks = "Foundation"
 
+  spec.dependency "Core"
 end
-

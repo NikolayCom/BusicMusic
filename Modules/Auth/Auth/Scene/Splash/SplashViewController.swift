@@ -10,6 +10,7 @@ final class SplashViewController: BaseViewController<
     SplashViewInterface,
     SplashViewModelInterface
 > {
+
     override func setup() {
         super.setup()
 

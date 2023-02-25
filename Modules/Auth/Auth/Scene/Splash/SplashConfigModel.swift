@@ -18,3 +18,4 @@ typealias SplashDependency = HasAuthUseCase
 final class SplashConfigModel: BaseConfigModel<
     SplashInputInterface, SplashOutputInterface, SplashDependency
 > {}
+

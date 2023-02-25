@@ -2,7 +2,17 @@ import Foundation
 
 // MARK: - BaseConfigModel
 
-open class BaseConfigModel<Input, Output>: ConfigModelInterface {
+open class BaseConfigModel<Input, Output, Dependency>: ConfigModelInterface {
+    private weak var usecaseDependency: AnyObject?
+    public var dependency: Dependency? {
+        get {
+            self.usecaseDependency as? Dependency
+        }
+        set {
+            self.usecaseDependency = newValue as? AnyObject
+        }
+    }
+
     private weak var storageInput: AnyObject?
     public var input: Input! {
         get {
@@ -24,8 +34,10 @@ open class BaseConfigModel<Input, Output>: ConfigModelInterface {
     }
 
     public init(
-        output: Output?
+        output: Output?,
+        dependency: Dependency
     ) {
         self.output = output
+        self.dependency = dependency
     }
 }

@@ -13,6 +13,8 @@ final class SplashViewModel: BaseViewModel<
 > {
     override func viewLoaded() {
         super.viewLoaded()
+
+        self.config.dependency?.authUseCase
     }
 }
 
