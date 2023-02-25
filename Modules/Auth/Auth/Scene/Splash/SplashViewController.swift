@@ -14,6 +14,7 @@ final class SplashViewController: BaseViewController<
         super.setup()
 
         pinContentViewFull()
+        view.backgroundColor = .white
     }
 }
 

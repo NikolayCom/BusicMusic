@@ -17,12 +17,6 @@ protocol SplashViewInterface: BaseViewInterface {}
 // MARK: - SplashView
 
 class SplashView: BaseView<SplashViewModelInterface> {
-    // MARK: - Life cycle
-
-    override func viewWillAppear() {
-        super.viewWillAppear()
-    }
-    
     // MARK: - Setups
 
     override func setupUI() {
