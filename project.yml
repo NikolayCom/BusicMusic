@@ -1,0 +1,49 @@
+name: BasicMusic
+
+configs:
+    Debug: debug
+    Internal: debug
+    Appstore: release
+
+options:
+    minimumXcodeGenVersion: 2.3.0
+    deploymentTarget:
+    iOS: 14.0
+    defaultConfig: Debug
+    groupSortPosition: top
+    developmentLanguage: en
+
+settings:
+  base:
+    SWIFT_VERSION: 5.0
+    TARGETED_DEVICE_FAMILY: 1
+    configs:
+    Appstore:
+        ENABLE_TESTABILITY: NO
+        SWIFT_COMPILATION_MODE: wholemodule
+        SWIFT_OPTIMIZATION_LEVEL: -O
+        VALIDATE_PRODUCT: YES
+    Internal:
+        ENABLE_TESTABILITY: NO
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: STAGING
+        SWIFT_COMPILATION_MODE: wholemodule
+        SWIFT_OPTIMIZATION_LEVEL: -O
+        VALIDATE_PRODUCT: NO
+    Debug:
+        ENABLE_TESTABILITY: YES
+        SWIFT_COMPILATION_MODE: singlefile
+        SWIFT_OPTIMIZATION_LEVEL: -Onone
+        VALIDATE_PRODUCT: NO
+
+
+targets:
+  BasicMusic:
+    type: application
+    platform: iOS
+    deploymentTarget: 14.0
+    sources: BasicMusic
+    settings:
+        base:
+        MARKETING_VERSION: 1.0
+        PRODUCT_BUNDLE_IDENTIFIER: "Pivnik.Busic"
+        INFOPLIST_FILE: BasicMusic/Info.plist
