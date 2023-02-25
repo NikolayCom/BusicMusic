@@ -1,7 +1,4 @@
 ## Pods
-Pods
-
-*.generated.swift
 
 ## User settings
 xcuserdata/
@@ -19,13 +16,9 @@ xcuserdata/
 .DS_Store
 .DS_Store?
 ._*
-.Spotlight-V100
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# CI results
-temp_output/
 
 # Intermediate files
 fastlane/report.xml
@@ -33,8 +26,8 @@ fastlane/README.md
 gems
 Pods/
 Podfile.lock
-Gemfile.lock
 
 # Generated files
+*.localized.swift*
 *.xcodeproj/*
 

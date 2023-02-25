@@ -15,7 +15,7 @@
         - Localization/Localization/en.lproj
     outputs:
         - templateName: structured-swift5
-          output: Localization/Strings+Generated.swift
+          output: Localization/Strings.localized.swift
           params:
             enumName: S
             publicAccess: true
