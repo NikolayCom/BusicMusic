@@ -3,7 +3,7 @@
 def external_pods
   
 # Formatter
-  pod 'SwiftLint', '~> 0.46.5'
+  pod 'SwiftLint', '~> 0.47.1'
 
 # Constraints
   pod 'SnapKit', '~> 5.0.1'

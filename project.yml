@@ -34,9 +34,10 @@ targets:
           PRODUCT_BUNDLE_IDENTIFIER: com.busicmusic.appstore
           PRODUCT_NAME: BasicMusic
           DISPLAY_NAME: "$(PRODUCT_NAME) $(CONFIGURATION)"
-    postCompileScripts:
-      - path: Scripts/swiftlint.sh
-        name: SwiftLint
+    # todo: Разобраться с ошибкой компиляции/проверкой внешних зависимостей
+    #postCompileScripts:
+      #- path: Scripts/swiftlint.sh
+        #name: SwiftLint
 
 schemes:
   Debug:

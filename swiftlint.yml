@@ -45,6 +45,7 @@ opt_in_rules:
   - flatmap_over_map_reduce
   - for_where
   - force_try
+  - force_cast
   - function_body_length
   - function_parameter_count
   - generic_type_name
