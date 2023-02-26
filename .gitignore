@@ -28,6 +28,6 @@ Pods/
 Podfile.lock
 
 # Generated files
-*.localized.swift*
+*.generated.swift*
 *.xcodeproj/*
 

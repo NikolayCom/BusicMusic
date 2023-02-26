@@ -3,10 +3,10 @@ import UIKit
 // MARK: - FontType
 
 public enum FontType: String {
-    case medium = "Medium"
-    case light = "Light"
-    case bold = "Bold"
-    case regular = "Regular"
+    case medium
+    case italic
+    case bold
+    case regular
 }
 
 // MARK: - Fonts used within the app

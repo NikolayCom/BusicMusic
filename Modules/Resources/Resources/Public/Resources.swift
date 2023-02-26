@@ -3,16 +3,27 @@ import Foundation
 public enum Resources {
 
     public static var strings: S.Type { S.self }
-    // public static var images: R.image.Type { R.image.self }
-    //    static var colors: R.color.Type { R.color.self }
+    public static var images: I.Type { I.self }
     //
     //    // MARK: - Fonts
     //
 
 
-    public static func font(type: FontType, size: CGFloat) -> UIFont? {
-        return nil
-        // R.font(type: type, size: size)
+    public static func font(type: FontType, size: CGFloat) -> UIFont {
+        let fontType = F.Figtree.self
+        switch type {
+        case .medium:
+            return fontType.medium.font(size: size)
+
+        case .bold:
+            return fontType.bold.font(size: size)
+
+        case .italic:
+            return fontType.italic.font(size: size)
+
+        case .regular:
+            return fontType.regular.font(size: size)
+        }
     }
 
 }

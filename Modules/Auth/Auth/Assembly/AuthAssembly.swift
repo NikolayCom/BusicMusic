@@ -7,6 +7,7 @@ protocol AuthAssembly: BaseAssembly {
     var rootAssembly: RootAssembly { get }
 
     func makeSplash(output: SplashOutputInterface?) -> SplashViewController
+    func makeOnBoarding(output: OnBoardingOutputInterface?) -> OnBoardingViewController
 }
 
 // MARK: - AppAssemblyImpl
@@ -39,6 +40,15 @@ public final class AuthAssemblyImpl: BaseAssembly {
 // MARK: - AuthAssembly
 
 extension AuthAssemblyImpl: AuthAssembly {
+    func makeOnBoarding(output: OnBoardingOutputInterface?) -> OnBoardingViewController {
+        OnBoardingSceneAssembly(
+            config: OnBoardingConfigModel(
+                output: output,
+                dependency: self.appDependency
+            )
+        ).controller as! OnBoardingViewController
+    }
+
     func makeSplash(output: SplashOutputInterface?) -> SplashViewController {
         SplashSceneAssembly(
             config: SplashConfigModel(
