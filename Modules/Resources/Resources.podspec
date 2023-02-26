@@ -15,6 +15,4 @@ Pod::Spec.new do |spec|
   spec.resources = ["Resources/**/*.{xcassets,strings}"]
 
   spec.frameworks = "Foundation"
-
-  spec.dependency "Core"
 end

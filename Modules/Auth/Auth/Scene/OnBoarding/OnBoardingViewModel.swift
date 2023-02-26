@@ -2,7 +2,10 @@ import Core
 
 // MARK: - OnBoardingViewModelInterface
 
-protocol OnBoardingViewModelInterface: BaseViewModelInterface {}
+protocol OnBoardingViewModelInterface: BaseViewModelInterface {
+    func logInButtonTapped()
+    func registerButtonTapped()
+}
 
 // MARK: - OnBoardingViewController
 
@@ -18,7 +21,15 @@ final class OnBoardingViewModel: BaseViewModel<
 
 // MARK: - OnBoardingViewModelInterface
 
-extension OnBoardingViewModel: OnBoardingViewModelInterface {}
+extension OnBoardingViewModel: OnBoardingViewModelInterface {
+    func logInButtonTapped() {
+        print("Log in")
+    }
+
+    func registerButtonTapped() {
+        print("Register")
+    }
+}
 
 // MARK: - OnBoardingInputInterface
 

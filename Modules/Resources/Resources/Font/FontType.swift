@@ -7,6 +7,8 @@ public enum FontType: String {
     case italic
     case bold
     case regular
+    case extraBold
+    case system
 }
 
 // MARK: - Fonts used within the app

@@ -28,12 +28,12 @@ end
 
 def developmet_pods
   pod "Core", :path => "./Modules/Core"
+  pod "Resources", :path => "./Modules/Resources"
   pod "Constants", :path => "./Modules/Constants"
   pod "UIComponents", :path => "./Modules/UIComponents"
   pod "Extensions", :path => "./Modules/Extensions"
   pod "UseCases", :path => "./Modules/UseCases"
   pod "Auth", :path => "./Modules/Auth"
-  pod "Resources", :path => "./Modules/Resources"
 end
 
 # Targerts

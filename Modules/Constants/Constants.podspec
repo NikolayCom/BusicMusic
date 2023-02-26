@@ -14,4 +14,6 @@ Pod::Spec.new do |spec|
   spec.source_files  = "Constants/**/*.{h,m,swift}"
 
   spec.frameworks = "Foundation"
+
+  spec.dependency "Resources"
 end

@@ -1,13 +1,16 @@
 import Foundation
 
+//MARK: Resources
+
 public enum Resources {
+    // MARK: - Generated
 
     public static var strings: S.Type { S.self }
     public static var images: I.Type { I.self }
-    //
-    //    // MARK: - Fonts
-    //
+    public static var colors: C.Type { C.self }
 
+
+    // MARK: - Fonts
 
     public static func font(type: FontType, size: CGFloat) -> UIFont {
         let fontType = F.Figtree.self
@@ -23,7 +26,12 @@ public enum Resources {
 
         case .regular:
             return fontType.regular.font(size: size)
+
+        case .extraBold:
+            return fontType.extraBold.font(size: size)
+
+        case .system:
+            return .boldSystemFont(ofSize: size)
         }
     }
-
 }

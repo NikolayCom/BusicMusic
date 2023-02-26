@@ -42,11 +42,11 @@ open class BaseView<ViewModel>: UIView {
 
     open func viewLoaded() {}
 
-    open func setup() {}
-
-    open func setupUI() {
+    open func setup() {
         backgroundColor = appearance.backgroundColor
     }
+
+    open func setupUI() {}
 
     open func setupConstraints() {}
 }

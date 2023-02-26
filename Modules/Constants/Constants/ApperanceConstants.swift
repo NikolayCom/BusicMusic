@@ -1,11 +1,14 @@
+import Resources
+
 /// Протокол для основных числовых констант для верстки содержащий цвета, альфы и прочngее
 public protocol AppearanceConstants {}
 
 /// Содержит основные базовые числовые константы
 public extension AppearanceConstants {
     var clearColor: UIColor { .clear }
-    var whiteColor: UIColor { .white }
-    var blackColor: UIColor { .black }
+    var whiteColor: UIColor { Resources.colors.cffffff.color }
+    var blackColor: UIColor { Resources.colors.c191414.color }
+    var redColor: UIColor { Resources.colors.ce50914.color }
 }
 
 /// Обертка для AppearanceConstant совместимых типов
