@@ -22,27 +22,15 @@
          enumName: F
          publicAccess: true
 
-## Colors
+## Colors/Images
 
   xcassets:
     inputs:
      - Modules/Resources/Resources/Assets/Colors.xcassets
-    outputs:
-     - templateName: swift5
-       output: Modules/Resources/Resources/Public/Colors.generated.swift
-       params:
-         enumName: C
-         publicAccess: true
-
-## Images
-
-  xcassets:
-    inputs:
      - Modules/Resources/Resources/Assets/Auth.images.xcassets
     outputs:
      - templateName: swift5
-       output: Modules/Resources/Resources/Public/Images.generated.swift
+       output: Modules/Resources/Resources/Public/Assets.generated.swift
        params:
-         enumName: I
-         forceProvidesNamespaces: true
+         enumName: A
          publicAccess: true
