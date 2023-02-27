@@ -12,3 +12,5 @@ sh PodInstall.command
 swiftgen config lint
 swiftgen 
 
+pod install --repo-update
+
