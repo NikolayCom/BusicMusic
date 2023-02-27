@@ -15,7 +15,7 @@
         - Localization/Localization/en.lproj
     outputs:
         - templateName: structured-swift5
-          output: Generated/Strings.generated.swift
+          output: Public/Strings.generated.swift
           params:
             enumName: S
             publicAccess: true
@@ -31,7 +31,7 @@
      - Assets/Auth.images.xcassets
     outputs:
      - templateName: swift5
-       output: Generated/Images.generated.swift
+       output: Public/Images.generated.swift
        params:
          enumName: I
          forceProvidesNamespaces: true
@@ -55,7 +55,7 @@
      - Font/Fonts
     outputs:
      - templateName: swift5
-       output: Generated/Fonts.generated.swift
+       output: Public/Fonts.generated.swift
        params:
          enumName: F
          publicAccess: true
@@ -67,7 +67,7 @@
      - Assets/Colors.xcassets
     outputs:
      - templateName: swift5
-       output: Generated/Colors.generated.swift
+       output: Public/Colors.generated.swift
        params:
          enumName: C
          publicAccess: true
