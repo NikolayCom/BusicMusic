@@ -6,8 +6,8 @@ public enum Resources {
     // MARK: - Generated
 
     public static var strings: S.Type { S.self }
-    public static var images: I.Type { I.self }
-    public static var colors: C.Type { C.self }
+    public static var images: A.AuthImages.Type { A.AuthImages.self }
+    public static var colors: A.Colors.Type { A.Colors.self }
 
 
     // MARK: - Fonts
