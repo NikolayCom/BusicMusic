@@ -10,7 +10,7 @@ private extension AppearanceConstants {
 public class MainButton: UIButton {
     // MARK: Private properties
 
-    private var type: MainButtonType = .continue
+    private var type: MainButtonType
 
     private lazy var contentView = MainButtonContentView()
 
@@ -28,8 +28,10 @@ public class MainButton: UIButton {
 
     // MARK: Init
 
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
+    public init(type: MainButtonType) {
+        self.type = type
+
+        super.init(frame: .zero)
 
         self.configure()
         self.setupViews()

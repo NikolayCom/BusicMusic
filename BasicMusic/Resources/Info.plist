@@ -4,11 +4,11 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Figtree-Bold</string>
-		<string>Figtree-ExtraBold</string>
-		<string>Figtree-Italic</string>
-		<string>Figtree-Medium</string>
-		<string>Figtree-Regular</string>
+		<string>Figtree-Bold.ttf</string>
+		<string>Figtree-ExtraBold.ttf</string>
+		<string>Figtree-Italic.ttf</string>
+		<string>Figtree-Medium.ttf</string>
+		<string>Figtree-Regular.ttf</string>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>

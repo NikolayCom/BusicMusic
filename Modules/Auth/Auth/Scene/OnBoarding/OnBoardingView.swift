@@ -27,12 +27,6 @@ protocol OnBoardingViewInterface: BaseViewInterface {}
 // MARK: - OnBoardingView
 
 class OnBoardingView: BaseView<OnBoardingViewModelInterface> {
-    private lazy var blurEffectView = UIVisualEffectView(
-        effect: UIBlurEffect(style: UIBlurEffect.Style.systemThickMaterialDark)
-    ).then {
-        $0.alpha = 0.8
-    }
-
     private lazy var imageView = UIImageView().then {
         $0.image = data.mainImage
         $0.contentMode = .scaleAspectFill
@@ -43,7 +37,7 @@ class OnBoardingView: BaseView<OnBoardingViewModelInterface> {
         $0.spacing = grid.space24
     }
 
-    private lazy var registerButton = MainButton().then {
+    private lazy var registerButton = MainButton(type: .continue).then {
         $0.setTitle(data.registerButtonTitle, for: .normal)
         $0.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
     }
@@ -65,12 +59,6 @@ class OnBoardingView: BaseView<OnBoardingViewModelInterface> {
     }
 
     // MARK: - Setups
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        self.blurEffectView.frame = imageView.bounds
-    }
 
     override func setup() {
         super.setup()
@@ -95,8 +83,6 @@ class OnBoardingView: BaseView<OnBoardingViewModelInterface> {
                 self.bottomContainerStackView
             ]
         )
-
-        self.imageView.addSubview(blurEffectView)
     }
 
     override func setupConstraints() {
@@ -113,7 +99,7 @@ class OnBoardingView: BaseView<OnBoardingViewModelInterface> {
         }
 
         self.logoLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(grid.space200)
+            $0.top.equalTo(safeAreaLayoutGuide).inset(grid.space200)
             $0.centerX.equalToSuperview()
         }
     }

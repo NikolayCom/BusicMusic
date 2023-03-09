@@ -15,6 +15,7 @@ final class OnBoardingViewController: BaseViewController<
         super.setup()
 
         pinContentViewFull()
+        // view.backgroundColor = .white
     }
 }
 
