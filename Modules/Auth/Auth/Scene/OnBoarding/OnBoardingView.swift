@@ -13,8 +13,7 @@ private extension DataConstants {
 
     var haveAccountText: String { Resources.strings.Auth.Onboarding.haveAccount }
 
-    //Todo: Сделать нормально
-    var appName: String { "BasicMusic" }
+    var appName: String { Configuration.shared.appName }
     var appLabelFont: UIFont { Resources.font(type: .extraBold, size: 44) }
 }
 
@@ -99,7 +98,7 @@ class OnBoardingView: BaseView<OnBoardingViewModelInterface> {
         }
 
         self.logoLabel.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).inset(grid.space200)
+            $0.top.equalToSuperview().inset(grid.space200)
             $0.centerX.equalToSuperview()
         }
     }

@@ -2,9 +2,12 @@ import Constants
 import Resources
 import Then
 
+// MARK: Constants
+
 private extension AppearanceConstants {
     var alpha: CGFloat { 1.0 }
     var subAlpha: CGFloat { 0.5 }
+    var cornerRadius: CGFloat { 4 }
 }
 
 public class MainButton: UIButton {
@@ -62,6 +65,8 @@ public class MainButton: UIButton {
 
     private func configure() {
         backgroundColor = appearance.blackColor
+        clipsToBounds = true
+        layer.cornerRadius = appearance.cornerRadius
 
         setContentCompressionResistancePriority(.required, for: .vertical)
     }
