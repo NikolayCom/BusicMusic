@@ -7,7 +7,9 @@ protocol OnBoardingInputInterface: BaseInputInterface {}
 
 // MARK: - OnBoardingOutputInterface
 
-protocol OnBoardingOutputInterface: BaseOutputInterface {}
+protocol OnBoardingOutputInterface: BaseOutputInterface {
+    func actionButtonTapped(with screenType: SignInUpViewModel.ScreenType)
+}
 
 // MARK: - OnBoardingDependency
 

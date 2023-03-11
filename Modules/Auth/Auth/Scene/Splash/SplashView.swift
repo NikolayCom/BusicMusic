@@ -21,7 +21,6 @@ class SplashView: BaseView<SplashViewModelInterface> {
 
     override func setupUI() {
         super.setupUI()
-        let a = "fdfd"
         backgroundColor = appearance.whiteColor
     }
 

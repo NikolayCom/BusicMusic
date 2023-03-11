@@ -27,4 +27,13 @@ extension AuthCoordinator: SplashOutputInterface {}
 
 // MARK: OnBoardingOutputInterface
 
-extension AuthCoordinator: OnBoardingOutputInterface {}
+extension AuthCoordinator: OnBoardingOutputInterface {
+    func actionButtonTapped(with screenType: SignInUpViewModel.ScreenType) {
+        guard let signInUp = assembly?.makeSignInUp(type: screenType, output: self) else { return }
+        navigationController.pushViewController(signInUp, animated: true)
+    }
+}
+
+// MARK: SignInUpOutputInterface
+
+extension AuthCoordinator: SignInUpOutputInterface {}

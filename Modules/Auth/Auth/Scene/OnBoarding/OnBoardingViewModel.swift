@@ -23,11 +23,11 @@ final class OnBoardingViewModel: BaseViewModel<
 
 extension OnBoardingViewModel: OnBoardingViewModelInterface {
     func logInButtonTapped() {
-        print("Log in")
+        self.config.output?.actionButtonTapped(with: .login)
     }
 
     func registerButtonTapped() {
-        print("Register")
+        self.config.output?.actionButtonTapped(with: .registration)
     }
 }
 

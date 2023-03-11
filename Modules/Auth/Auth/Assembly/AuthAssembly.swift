@@ -8,6 +8,9 @@ protocol AuthAssembly: BaseAssembly {
 
     func makeSplash(output: SplashOutputInterface?) -> SplashViewController
     func makeOnBoarding(output: OnBoardingOutputInterface?) -> OnBoardingViewController
+    func makeSignInUp(
+        type: SignInUpViewModel.ScreenType, output: SignInUpOutputInterface?
+    ) -> SignInUpViewController
 }
 
 // MARK: - AppAssemblyImpl
@@ -40,6 +43,18 @@ public final class AuthAssemblyImpl: BaseAssembly {
 // MARK: - AuthAssembly
 
 extension AuthAssemblyImpl: AuthAssembly {
+    func makeSignInUp(
+        type: SignInUpViewModel.ScreenType, output: SignInUpOutputInterface?
+    ) -> SignInUpViewController {
+        SignInUpSceneAssembly(
+            config: SignInUpConfigModel(
+                screenType: type,
+                output: output,
+                dependency: appDependency
+            )
+        ).controller as! SignInUpViewController
+    }
+
     func makeOnBoarding(output: OnBoardingOutputInterface?) -> OnBoardingViewController {
         OnBoardingSceneAssembly(
             config: OnBoardingConfigModel(
