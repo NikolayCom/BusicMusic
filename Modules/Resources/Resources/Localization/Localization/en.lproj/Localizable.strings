@@ -17,3 +17,4 @@
 "auth.signInUP.facebookTitle" = "Facebook";
 "auth.signInUP.googleTitle" = "Google";
 "auth.signInUP.emailTitle" = "Email";
+"auth.signInUP.emailInDeveloping" = "Section under development.";

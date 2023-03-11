@@ -36,4 +36,13 @@ extension AuthCoordinator: OnBoardingOutputInterface {
 
 // MARK: SignInUpOutputInterface
 
-extension AuthCoordinator: SignInUpOutputInterface {}
+extension AuthCoordinator: SignInUpOutputInterface {
+    func showEmailScreen() {
+        guard let email = assembly?.makeEmail(output: self) else { return }
+        navigationController.pushViewController(email, animated: true)
+    }
+}
+
+// MARK: EmailOutputInterface
+
+extension AuthCoordinator: EmailOutputInterface {}

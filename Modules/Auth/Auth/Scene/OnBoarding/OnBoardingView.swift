@@ -5,7 +5,9 @@ import UIComponents
 
 // MARK: - Constants
 
-private extension AppearanceConstants {}
+private extension AppearanceConstants {
+    var appLabelFont: UIFont { Resources.font(type: .extraBold, size: 44) }
+}
 
 private extension DataConstants {
     var mainImage: UIImage? { Resources.images.onBoarding.image }
@@ -14,7 +16,6 @@ private extension DataConstants {
     var haveAccountText: String { Resources.strings.Auth.Onboarding.haveAccount }
 
     var appName: String { Configuration.shared.appName }
-    var appLabelFont: UIFont { Resources.font(type: .extraBold, size: 44) }
 }
 
 private extension GridConstants {}
@@ -54,7 +55,7 @@ class OnBoardingView: BaseView<OnBoardingViewModelInterface> {
     private lazy var logoLabel = UILabel().then {
         $0.text = data.appName
         $0.textColor = appearance.whiteColor
-        $0.font = data.appLabelFont
+        $0.font = appearance.appLabelFont
     }
 
     // MARK: - Setups

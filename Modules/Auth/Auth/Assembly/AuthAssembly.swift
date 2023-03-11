@@ -11,6 +11,7 @@ protocol AuthAssembly: BaseAssembly {
     func makeSignInUp(
         type: SignInUpViewModel.ScreenType, output: SignInUpOutputInterface?
     ) -> SignInUpViewController
+    func makeEmail(output: EmailOutputInterface?) -> EmailViewController
 }
 
 // MARK: - AppAssemblyImpl
@@ -43,6 +44,15 @@ public final class AuthAssemblyImpl: BaseAssembly {
 // MARK: - AuthAssembly
 
 extension AuthAssemblyImpl: AuthAssembly {
+    func makeEmail(output: EmailOutputInterface?) -> EmailViewController {
+        EmailSceneAssembly(
+            config: EmailConfigModel(
+                output: output,
+                dependency: appDependency
+            )
+        ).controller as! EmailViewController
+    }
+
     func makeSignInUp(
         type: SignInUpViewModel.ScreenType, output: SignInUpOutputInterface?
     ) -> SignInUpViewController {

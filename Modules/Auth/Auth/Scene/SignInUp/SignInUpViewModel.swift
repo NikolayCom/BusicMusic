@@ -36,6 +36,16 @@ final class SignInUpViewModel: BaseViewModel<
             }
         )
     }
+
+    private func performAction(with type: AuthType) {
+        switch type {
+        case .apple, .facebook, .google:
+            break
+
+        case .email:
+            self.config.output?.showEmailScreen()
+        }
+    }
 }
 
 // MARK: - SignInUpViewModelInterface
@@ -51,6 +61,6 @@ extension SignInUpViewModel: SignInUpInputInterface {}
 extension SignInUpViewModel: BottomDividedModelDelegate {
     func didTap(with id: String) {
         guard let actionType = AuthType(rawValue: id) else { return }
-        print(actionType)
+        self.performAction(with: actionType)
     }
 }
