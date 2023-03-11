@@ -11,13 +11,17 @@ final class SignInUpViewModel: BaseViewModel<
     SignInUpViewInterface,
     SignInUpConfigModel
 > {
-    enum ScreenType {
-        case login
-        case registration
-    }
+    typealias field
 
     override func viewLoaded() {
         super.viewLoaded()
+
+        self.configure()
+    }
+
+    private func configure() {
+        let viewText = self.config.screenType.text
+        self.view.setupTitles(with: viewText.title, subtitle: viewText.subtitle)
     }
 }
 

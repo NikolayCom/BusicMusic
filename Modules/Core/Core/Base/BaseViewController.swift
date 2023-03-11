@@ -2,6 +2,7 @@ import Core
 import Constants
 import SnapKit
 import UIComponents
+import Resources
 
 // swiftlint:disable file_length
 
@@ -11,7 +12,12 @@ private extension GridConstants {}
 
 private extension DataConstants {}
 
-private extension AppearanceConstants {}
+private extension AppearanceConstants {
+    var navBarColor: UIColor? { self.whiteColor }
+    var navBarShadowColor: UIColor? { self.blackColor }
+    var navigationBarTintColor: UIColor? { self.blackColor }
+    var navBarBackButtonIcon: UIImage { Resources.images.leftArrow.image }
+}
 
 // MARK: - BaseViewControllerInterface
 
@@ -105,6 +111,8 @@ open class BaseViewController<View, ViewModel>: UIViewController {
     open func setup() {
         (self.contentView as? BaseViewProtocol)?.setup()
         self.userThemeStyle = .light
+
+        view.backgroundColor = appearance.whiteColor
     }
 
     public func pinContentView(
@@ -155,12 +163,19 @@ open class BaseViewController<View, ViewModel>: UIViewController {
     // MARK: - NavigationBar
 
     open func setupNavBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithTransparentBackground()
+        navBarAppearance.backgroundColor = self.appearance.navBarColor
+        navBarAppearance.shadowColor = self.appearance.navBarShadowColor
 
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        let backButtonIcon = appearance.navBarBackButtonIcon
+        navBarAppearance.setBackIndicatorImage(backButtonIcon, transitionMaskImage: backButtonIcon)
+        navigationItem.backButtonDisplayMode = .minimal
+        
+        navigationController?.navigationBar.tintColor = appearance.navigationBarTintColor
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.compactAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
 
     // MARK: - Actions

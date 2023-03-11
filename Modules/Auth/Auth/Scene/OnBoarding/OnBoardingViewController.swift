@@ -11,11 +11,16 @@ final class OnBoardingViewController: BaseViewController<
     OnBoardingViewModelInterface
 > {
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        hideNavBar()
+    }
+
     override func setup() {
         super.setup()
 
         pinContentViewFull()
-        // view.backgroundColor = .white
     }
 }
 

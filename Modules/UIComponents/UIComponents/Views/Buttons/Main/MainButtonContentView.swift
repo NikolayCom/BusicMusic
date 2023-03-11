@@ -5,7 +5,7 @@ import Then
 //MARK: Constants
 
 private extension AppearanceConstants {
-    var labelFont: UIFont { Resources.font(type: .bold, size: 14) }
+    var labelFont: UIFont { Resources.font(type: .medium, size: 18) }
 }
 
 // MARK: MainButtonContentView
@@ -22,12 +22,16 @@ class MainButtonContentView: UIView {
         $0.font = appearance.labelFont
         $0.textColor = appearance.whiteColor
         $0.textAlignment = .center
+        // $0.sizeToFit()
     }
 
     private lazy var buttonIconImageView = UIImageView().then {
         $0.tintColor = appearance.whiteColor
         $0.contentMode = .right
-        $0.setContentHuggingPriority(.required, for: .horizontal)
+    }
+
+    private lazy var spacer = UIView().then {
+        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -50,7 +54,29 @@ class MainButtonContentView: UIView {
 
     private func setup() {
         addSubview(contentStackView)
+    }
 
+    private func setupConstraints() {
+        contentStackView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview().inset(grid.space12)
+        }
+    }
+
+    private func setupCentered() {
+        contentStackView.addArrangedSubviews(
+            [
+                self.buttonIconImageView,
+                self.buttonLabel
+            ]
+        )
+
+        // to do: Пофиксить если большой текст
+        self.contentStackView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+        }
+    }
+
+    private func setupRightIcon() {
         contentStackView.addArrangedSubviews(
             [
                 self.buttonLabel,
@@ -59,14 +85,21 @@ class MainButtonContentView: UIView {
             ]
         )
 
-        self.setupConstraints()
-    }
-
-    private func setupConstraints() {
-        contentStackView.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(grid.space12)
+        self.contentStackView.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview().inset(grid.space16)
         }
+    }
+
+    private func configureViews(with style: MainButtonType.Style) {
+        switch  style {
+        case .right:
+            setupRightIcon()
+
+        case .center:
+            setupCentered()
+        }
+
+        self.setupConstraints()
     }
 }
 
@@ -75,8 +108,8 @@ class MainButtonContentView: UIView {
 extension MainButtonContentView {
     func configure(with title: String?, buttonType: MainButtonType) {
         buttonLabel.text = title
+        configureViews(with: buttonType.style)
 
-        guard let iconImage = buttonType.iconImageName else { return }
-        buttonIconImageView.image = UIImage(systemName: buttonType.iconImageName.orEmpty)
+        buttonIconImageView.image = buttonType.iconImage?.withTintColor(appearance.whiteColor)
     }
 }

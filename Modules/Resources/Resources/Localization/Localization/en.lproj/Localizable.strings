@@ -1,2 +1,19 @@
+// MARK: - Common
+
+"common.or" = "OR";
+
+// MARK: - Auth
+
 "auth.onboarding.mainButtonTitle" = "START JOURNEY";
 "auth.onboarding.haveAccount" = "ALREADY HAVE AN ACCOUNT? LOG IN";
+
+"auth.signUp.joinUs" = "JOIN THE BASIC \nCOMMUNITY";
+"auth.signUp.signUp" = "Sign up any way you like and start working out.";
+
+"auth.signIn.welcome" = "WELCOME BACK";
+"auth.signIn.logIn" = "Log in with one of the following options and get started.";
+
+"auth.signInUP.appleTitle" = "Sign in with Apple";
+"auth.signInUP.facebookTitle" = "Facebook";
+"auth.signInUP.googleTitle" = "Google";
+"auth.signInUP.emailTitle" = "Email";

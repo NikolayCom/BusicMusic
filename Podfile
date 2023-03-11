@@ -34,6 +34,7 @@ def developmet_pods
   pod "Extensions", :path => "./Modules/Extensions"
   pod "UseCases", :path => "./Modules/UseCases"
   pod "Auth", :path => "./Modules/Auth"
+  pod "Models", :path => "./Modules/Models"
 end
 
 # Targerts

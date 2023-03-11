@@ -11,10 +11,16 @@ final class SignInUpViewController: BaseViewController<
     SignInUpViewModelInterface
 > {
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        showNavBar()
+    }
+
     override func setup() {
         super.setup()
 
-        pinContentViewFull()
+        pinContentView()
     }
 }
 
