@@ -2,6 +2,7 @@ import Core
 import Constants
 import Resources
 import UIComponents
+import Models
 
 // MARK: - Constants
 
@@ -24,6 +25,7 @@ private extension GridConstants {}
 
 protocol SignInUpViewInterface: BaseViewInterface {
     func setupTitles(with title: String, subtitle: String)
+    func configureActions(with models: [BottomDividedViewModel])
 }
 
 // MARK: - SignInUpView
@@ -50,10 +52,15 @@ final class SignInUpView: BaseView<SignInUpViewModelInterface> {
 
     private lazy var appleButton = MainButton(type: .apple).then {
         $0.setTitle(data.appleButtonTitle, for: .normal)
+        $0.addTarget(self, action: #selector(appleButtonDidTap), for: .touchUpInside)
     }
 
     private lazy var orLabel = DividedMainView().then {
         $0.configure(with: data.orText)
+    }
+
+    private lazy var actionsContainerStackView = UIStackView().then {
+        $0.axis = .vertical
     }
 
     // MARK: - Setups
@@ -70,8 +77,9 @@ final class SignInUpView: BaseView<SignInUpViewModelInterface> {
         self.addSubviews(
             [
                 self.titleLabelsStackView,
+                self.appleButton,
                 self.orLabel,
-                self.appleButton
+                self.actionsContainerStackView
             ]
         )
 
@@ -91,9 +99,14 @@ final class SignInUpView: BaseView<SignInUpViewModelInterface> {
             $0.leading.trailing.equalToSuperview().inset(grid.space16)
         }
 
+        self.actionsContainerStackView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(grid.space20)
+        }
+
         self.orLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(grid.space16)
-            $0.bottom.equalToSuperview().inset(grid.space20)
+            $0.bottom.equalTo(actionsContainerStackView.snp.top).inset(-grid.space10)
         }
 
         self.appleButton.snp.makeConstraints {
@@ -101,11 +114,37 @@ final class SignInUpView: BaseView<SignInUpViewModelInterface> {
             $0.bottom.equalTo(orLabel.snp.top).inset(-grid.space20)
         }
     }
+
+    private func configureActionViews(with models: [BottomDividedViewModel]) {
+        self.actionsContainerStackView.arrangedSubviews.forEach {
+            self.actionsContainerStackView.removeArrangedSubview($0)
+            $0.removeFromSuperview()
+        }
+
+        models.forEach { model in
+            actionsContainerStackView.addArrangedSubview(
+                BottomDividedView().then {
+                    $0.configure(with: model)
+                }
+            )
+        }
+    }
+
+    // MARK: - Actions
+
+    @objc
+    func appleButtonDidTap() {
+        viewModel.didTap(with: AuthType.apple.rawValue)
+    }
 }
 
 // MARK: - SignInUpView
 
 extension SignInUpView: SignInUpViewInterface {
+    func configureActions(with models: [BottomDividedViewModel]) {
+        configureActionViews(with: models)
+    }
+
     func setupTitles(with title: String, subtitle: String) {
         titleLabel.text = title
         subTitleLabel.text = subtitle

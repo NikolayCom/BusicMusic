@@ -5,7 +5,7 @@ private extension AppearanceConstants {
     var font: UIFont { Resources.font(type: .medium, size: 18) }
     var textColor: UIColor? { self.blackColor }
 
-    var dividedColor: UIColor? { self.blackColor }
+    var dividedColor: UIColor? { self.blackColor.withAlphaComponent(0.5) }
 }
 
 private extension GridConstants {

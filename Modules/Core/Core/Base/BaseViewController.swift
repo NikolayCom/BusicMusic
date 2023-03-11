@@ -14,7 +14,7 @@ private extension DataConstants {}
 
 private extension AppearanceConstants {
     var navBarColor: UIColor? { self.whiteColor }
-    var navBarShadowColor: UIColor? { self.blackColor }
+    var navBarShadowColor: UIColor? { self.blackColor.withAlphaComponent(0.5) }
     var navigationBarTintColor: UIColor? { self.blackColor }
     var navBarBackButtonIcon: UIImage { Resources.images.leftArrow.image }
 }

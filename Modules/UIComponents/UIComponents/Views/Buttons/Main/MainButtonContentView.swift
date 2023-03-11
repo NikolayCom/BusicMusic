@@ -22,7 +22,6 @@ class MainButtonContentView: UIView {
         $0.font = appearance.labelFont
         $0.textColor = appearance.whiteColor
         $0.textAlignment = .center
-        // $0.sizeToFit()
     }
 
     private lazy var buttonIconImageView = UIImageView().then {
@@ -70,7 +69,7 @@ class MainButtonContentView: UIView {
             ]
         )
 
-        // to do: Пофиксить если большой текст
+        // to do: Пофиксить с большим текстом
         self.contentStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
         }

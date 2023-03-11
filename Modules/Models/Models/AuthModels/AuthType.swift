@@ -1,16 +1,18 @@
 import Resources
+import Constants
 
 // MARK: AuthType
 
-enum AuthType {
+public enum AuthType: String, CaseIterable {
     case apple
     case facebook
     case google
     case email
 
-    var data: (title: String, image: UIImage?) {
+    public var data: (title: String, image: UIImage?) {
         let authStrings = Resources.strings.Auth.SignInUP
         let images = Resources.images
+        let colors = Resources.colors
 
         switch self {
         case .apple:
@@ -23,7 +25,10 @@ enum AuthType {
             return (authStrings.googleTitle, images.googleLogo.image)
 
         case .email:
-            return (authStrings.emailTitle, UIImage(systemName: "envelope"))
+            return (
+                authStrings.emailTitle,
+                UIImage(systemName: "envelope")?.withTintColor(.black)
+            )
         }
     }
 }

@@ -1,8 +1,11 @@
 import Core
+import Models
 
 // MARK: - SignInUpViewModelInterface
 
-protocol SignInUpViewModelInterface: BaseViewModelInterface {}
+protocol SignInUpViewModelInterface: BaseViewModelInterface {
+    func didTap(with id: String)
+}
 
 // MARK: - SignInUpViewController
 
@@ -11,8 +14,6 @@ final class SignInUpViewModel: BaseViewModel<
     SignInUpViewInterface,
     SignInUpConfigModel
 > {
-    typealias field
-
     override func viewLoaded() {
         super.viewLoaded()
 
@@ -22,6 +23,18 @@ final class SignInUpViewModel: BaseViewModel<
     private func configure() {
         let viewText = self.config.screenType.text
         self.view.setupTitles(with: viewText.title, subtitle: viewText.subtitle)
+
+        let authTypes: [AuthType] = [.facebook, .google, .email]
+        view.configureActions(
+            with: authTypes.map { type in
+                BottomDividedViewModel(
+                    delegate: self,
+                    id: type.rawValue,
+                    title: type.data.title,
+                    image: type.data.image
+                )
+            }
+        )
     }
 }
 
@@ -33,3 +46,11 @@ extension SignInUpViewModel: SignInUpViewModelInterface {}
 
 extension SignInUpViewModel: SignInUpInputInterface {}
 
+// MARK: - BottomDividedModelDelegate
+
+extension SignInUpViewModel: BottomDividedModelDelegate {
+    func didTap(with id: String) {
+        guard let actionType = AuthType(rawValue: id) else { return }
+        print(actionType)
+    }
+}
