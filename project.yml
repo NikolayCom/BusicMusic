@@ -27,11 +27,11 @@ targets:
         CURRENT_PROJECT_VERSION: 1
       configs:
         Debug:
-          PRODUCT_BUNDLE_IDENTIFIER: com.busicmusic.debug
+          PRODUCT_BUNDLE_IDENTIFIER: com.basicmusic.debug
           PRODUCT_NAME: BasicMusic
           DISPLAY_NAME: "$(PRODUCT_NAME) $(CONFIGURATION)"
         AppStore:
-          PRODUCT_BUNDLE_IDENTIFIER: com.busicmusic.appstore
+          PRODUCT_BUNDLE_IDENTIFIER: com.basicmusic.appstore
           PRODUCT_NAME: BasicMusic
           DISPLAY_NAME: "$(PRODUCT_NAME) $(CONFIGURATION)"
     # todo: Разобраться с ошибкой компиляции/проверкой внешних зависимостей

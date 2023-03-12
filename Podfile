@@ -22,6 +22,15 @@ def external_pods
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Crashlytics'
+
+# SignIn
+  pod 'GoogleSignIn', '~> 7.0.0'
+  pod 'FacebookLogin'
+
+# Debug panel
+  pod "DBDebugToolkit", '~> 0.8.0', :configurations => ['Debug']
+  pod 'CocoaLumberjack/Swift', :configurations => ['Debug']
+
 end
 
 # Development

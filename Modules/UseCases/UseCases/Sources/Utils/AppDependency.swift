@@ -8,17 +8,22 @@ public protocol HasAuthUseCase {
 
 public protocol AppDependency: HasAuthUseCase {}
 
-public class AppDependencyImpl: AppDependency {
-    public let authUseCase: AuthUseCase
+public class AppDependencyImpl {
+    private let requestsAssembly: RequestsAssembly
 
-    private init(
-        authUseCase: AuthUseCase
-    ) {
-        self.authUseCase = authUseCase
+    public lazy var authUseCase: AuthUseCase = AuthUseCaseImpl(
+        firebaseAuthRequestService: requestsAssembly.firebaseAuthRequestService
+    )
+
+    private init(requestsAssembly: RequestsAssembly) {
+        self.requestsAssembly = requestsAssembly
     }
 
     public convenience init() {
-        self.init(authUseCase: AuthUseCaseImpl())
+        self.init(requestsAssembly: RequestsAssemblyImpl())
     }
 }
 
+// MARK: - AppDependencyImpl + AppDependency
+
+extension AppDependencyImpl: AppDependency {}

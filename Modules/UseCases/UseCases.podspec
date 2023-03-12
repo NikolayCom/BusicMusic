@@ -17,4 +17,8 @@ Pod::Spec.new do |spec|
   spec.frameworks = "Foundation"
 
   spec.dependency "Core"
+  spec.dependency "Models"
+  spec.dependency "Firebase/Core"
+  spec.dependency "Firebase/Auth"
+  spec.dependency "GoogleSignIn"
 end

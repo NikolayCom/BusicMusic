@@ -15,7 +15,7 @@ public struct Configuration {
     public let appName: String
 
     public var isDebug: Bool {
-        #if DEBUG || INT
+        #if DEBUG
             return true
         #else
             return false

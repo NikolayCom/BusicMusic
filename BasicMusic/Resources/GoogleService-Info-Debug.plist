@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>909579456507-ocldn72s3t91e2b2dbgsn5ficdb2as1v.apps.googleusercontent.com</string>
+	<string>909579456507-o3ti4oct9j77pd6dte9uatb56mdjqjnc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.909579456507-ocldn72s3t91e2b2dbgsn5ficdb2as1v</string>
+	<string>com.googleusercontent.apps.909579456507-o3ti4oct9j77pd6dte9uatb56mdjqjnc</string>
 	<key>API_KEY</key>
 	<string>AIzaSyD5egHnwqbjGM6D5P8bfuCTuJ7jJ0qLbvM</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>BasicMusic.BasicMusic</string>
+	<string>com.basicmusic.debug</string>
 	<key>PROJECT_ID</key>
 	<string>basicmusic-65fe3</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:909579456507:ios:e127eeba5ea4c89f98c55e</string>
+	<string>1:909579456507:ios:0aa33f6809c0d2a298c55e</string>
 </dict>
 </plist>

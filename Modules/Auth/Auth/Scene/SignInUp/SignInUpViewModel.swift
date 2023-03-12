@@ -1,5 +1,6 @@
 import Core
 import Models
+import UseCases
 
 // MARK: - SignInUpViewModelInterface
 
@@ -37,10 +38,29 @@ final class SignInUpViewModel: BaseViewModel<
         )
     }
 
+    private func authUser(with type: AuthType, completion: @escaping Action) {
+        let controller = controller as? UIViewController
+        self.config.dependency?.authUseCase.authUser(with: type, instance: controller) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .value:
+                completion()
+
+            case .error(let error):
+                print(error.message)
+            }
+        }
+    }
+
     private func performAction(with type: AuthType) {
         switch type {
-        case .apple, .facebook, .google:
-            break
+        case .facebook, .google:
+            self.authUser(with: type) { [weak self] in
+                self?.config.output?.showEmailScreen()
+            }
+
+        case .apple:
+            self.config.output?.showEmailScreen()
 
         case .email:
             self.config.output?.showEmailScreen()
