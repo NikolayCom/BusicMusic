@@ -9,7 +9,6 @@
 
 "auth.signUp.joinUs" = "JOIN THE BASIC \nCOMMUNITY";
 "auth.signUp.signUp" = "Sign up any way you like and start working out.";
-"auth.signUp.email.join" = "JOIN";
 
 "auth.signIn.welcome" = "WELCOME BACK";
 "auth.signIn.logIn" = "Log in with one of the following options and get started.";
@@ -19,3 +18,13 @@
 "auth.signInUP.googleTitle" = "Google";
 "auth.signInUP.emailTitle" = "Email";
 "auth.signInUP.emailInDeveloping" = "Section under development.";
+
+"auth.email.join" = "JOIN";
+"auth.email.login" = "JOIN";
+"auth.email.firstName" = "FIRST NAME";
+"auth.email.lastName" = "LAST NAME";
+"auth.email.email" = "EMAIL";
+"auth.email.password" = "PASSWORD";
+"auth.email.createAccount" = "CREATE YOUR ACCOUNT";
+"auth.email.information" = "Your information is secure with us. Users will be able to search for your name or email address";
+"auth.email.passwordInfo" = "Min 8 char";

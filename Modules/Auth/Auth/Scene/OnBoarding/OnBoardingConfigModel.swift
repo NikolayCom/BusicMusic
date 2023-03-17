@@ -1,5 +1,6 @@
 import Core
 import UseCases
+import Models
 
 // MARK: - OnBoardingInputInterface
 
@@ -8,7 +9,7 @@ protocol OnBoardingInputInterface: BaseInputInterface {}
 // MARK: - OnBoardingOutputInterface
 
 protocol OnBoardingOutputInterface: BaseOutputInterface {
-    func actionButtonTapped(with screenType: SignInUpViewModel.ScreenType)
+    func actionButtonTapped(with screenType: AuthScreenType)
 }
 
 // MARK: - OnBoardingDependency

@@ -22,7 +22,7 @@ final class SignInUpViewModel: BaseViewModel<
     }
 
     private func configure() {
-        let viewText = self.config.screenType.text
+        let viewText = self.config.screenType.title
         self.view.setupTitles(with: viewText.title, subtitle: viewText.subtitle)
 
         let authTypes: [AuthType] = [.facebook, .google, .email]
@@ -56,14 +56,15 @@ final class SignInUpViewModel: BaseViewModel<
         switch type {
         case .google:
             self.authUser(with: type) { [weak self] in
-                self?.config.output?.showEmailScreen()
+                guard let self = self else { return }
+                self.config.output?.showEmailScreen(with: self.config.screenType)
             }
 
         case .apple, .facebook:
             self.config.output?.showInDeveloping()
 
         case .email:
-            self.config.output?.showEmailScreen()
+            self.config.output?.showEmailScreen(with: config.screenType)
         }
     }
 }

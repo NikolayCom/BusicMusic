@@ -1,5 +1,6 @@
 import Core
 import UseCases
+import Models
 
 // MARK: - SignInUpInputInterface
 
@@ -8,7 +9,7 @@ protocol SignInUpInputInterface: BaseInputInterface {}
 // MARK: - SignInUpOutputInterface
 
 protocol SignInUpOutputInterface: BaseOutputInterface {
-    func showEmailScreen()
+    func showEmailScreen(with screenType: AuthScreenType)
     func showInDeveloping()
 }
 
@@ -23,10 +24,10 @@ final class SignInUpConfigModel: BaseConfigModel<
     SignInUpOutputInterface,
     SignInUpDependency
 > {
-    let screenType: SignInUpViewModel.ScreenType
+    let screenType: AuthScreenType
 
     init(
-        screenType: SignInUpViewModel.ScreenType,
+        screenType: AuthScreenType,
         output: SignInUpOutputInterface?,
         dependency: SignInUpDependency
     ) {

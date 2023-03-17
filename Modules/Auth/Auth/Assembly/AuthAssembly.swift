@@ -1,6 +1,7 @@
 import Core
 import UseCases
 import Common
+import Models
 
 // MARK: - AuthAssembly
 
@@ -10,9 +11,12 @@ protocol AuthAssembly: BaseAssembly {
     func makeSplash(output: SplashOutputInterface?) -> SplashViewController
     func makeOnBoarding(output: OnBoardingOutputInterface?) -> OnBoardingViewController
     func makeSignInUp(
-        type: SignInUpViewModel.ScreenType, output: SignInUpOutputInterface?
+        type: AuthScreenType, output: SignInUpOutputInterface?
     ) -> SignInUpViewController
     func makeInDeveloping(output: InDevelopingOutputInterface?) -> InDevelopingViewController
+    func makeEmail(
+        type: AuthScreenType, output: EmailOutputInterface?
+    ) -> EmailViewController
 }
 
 // MARK: - AppAssemblyImpl
@@ -45,6 +49,16 @@ public final class AuthAssemblyImpl: BaseAssembly {
 // MARK: - AuthAssembly
 
 extension AuthAssemblyImpl: AuthAssembly {
+    func makeEmail(type: AuthScreenType, output: EmailOutputInterface?) -> EmailViewController {
+        EmailSceneAssembly(
+            config: EmailConfigModel(
+                screenType: type,
+                output: output,
+                dependency: appDependency
+            )
+        ).controller as! EmailViewController
+    }
+
     func makeInDeveloping(output: InDevelopingOutputInterface?) -> InDevelopingViewController {
         InDevelopingSceneAssembly(
             config: InDevelopingConfigModel(
@@ -55,7 +69,7 @@ extension AuthAssemblyImpl: AuthAssembly {
     }
 
     func makeSignInUp(
-        type: SignInUpViewModel.ScreenType, output: SignInUpOutputInterface?
+        type: AuthScreenType, output: SignInUpOutputInterface?
     ) -> SignInUpViewController {
         SignInUpSceneAssembly(
             config: SignInUpConfigModel(
