@@ -1,5 +1,6 @@
 import Core
 import UseCases
+import Common
 
 // MARK: - AuthAssembly
 
@@ -11,7 +12,7 @@ protocol AuthAssembly: BaseAssembly {
     func makeSignInUp(
         type: SignInUpViewModel.ScreenType, output: SignInUpOutputInterface?
     ) -> SignInUpViewController
-    func makeEmail(output: EmailOutputInterface?) -> EmailViewController
+    func makeInDeveloping(output: InDevelopingOutputInterface?) -> InDevelopingViewController
 }
 
 // MARK: - AppAssemblyImpl
@@ -44,13 +45,13 @@ public final class AuthAssemblyImpl: BaseAssembly {
 // MARK: - AuthAssembly
 
 extension AuthAssemblyImpl: AuthAssembly {
-    func makeEmail(output: EmailOutputInterface?) -> EmailViewController {
-        EmailSceneAssembly(
-            config: EmailConfigModel(
+    func makeInDeveloping(output: InDevelopingOutputInterface?) -> InDevelopingViewController {
+        InDevelopingSceneAssembly(
+            config: InDevelopingConfigModel(
                 output: output,
                 dependency: appDependency
             )
-        ).controller as! EmailViewController
+        ).controller as! InDevelopingViewController
     }
 
     func makeSignInUp(

@@ -14,8 +14,8 @@ final class OnBoardingViewModel: BaseViewModel<
     OnBoardingViewInterface,
     OnBoardingConfigModel
 > {
-    override func viewLoaded() {
-        super.viewLoaded()
+    override func viewAppeared() {
+        super.viewAppeared()
     }
 }
 

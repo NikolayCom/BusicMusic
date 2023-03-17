@@ -9,6 +9,7 @@
 
 "auth.signUp.joinUs" = "JOIN THE BASIC \nCOMMUNITY";
 "auth.signUp.signUp" = "Sign up any way you like and start working out.";
+"auth.signUp.email.join" = "JOIN";
 
 "auth.signIn.welcome" = "WELCOME BACK";
 "auth.signIn.logIn" = "Log in with one of the following options and get started.";

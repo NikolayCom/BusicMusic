@@ -16,13 +16,13 @@ private extension DataConstants {
 
 private extension GridConstants {}
 
-// MARK: - EmailViewInterface
+// MARK: - InDevelopingViewInterface
 
-protocol EmailViewInterface: BaseViewInterface {}
+public protocol InDevelopingViewInterface: BaseViewInterface {}
 
-// MARK: - EmailView
+// MARK: - InDevelopingView
 
-class EmailView: BaseView<EmailViewModelInterface> {
+public class InDevelopingView: BaseView<InDevelopingViewModelInterface> {
     private lazy var textLabel = UILabel().then {
         $0.text = data.text
         $0.textColor = appearance.textColor
@@ -32,19 +32,19 @@ class EmailView: BaseView<EmailViewModelInterface> {
 
     // MARK: - Setups
 
-    override func setup() {
+    public override func setup() {
         super.setup()
 
         backgroundColor = appearance.whiteColor
     }
 
-    override func setupUI() {
+    public override func setupUI() {
         super.setupUI()
 
         addSubview(textLabel)
     }
 
-    override func setupConstraints() {
+    public override func setupConstraints() {
         super.setupConstraints()
 
         self.textLabel.snp.makeConstraints {
@@ -54,6 +54,6 @@ class EmailView: BaseView<EmailViewModelInterface> {
     }
 }
 
-// MARK: - EmailView
+// MARK: - InDevelopingView
 
-extension EmailView: EmailViewInterface {}
+extension InDevelopingView: InDevelopingViewInterface {}

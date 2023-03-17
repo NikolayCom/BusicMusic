@@ -9,6 +9,7 @@ protocol SignInUpInputInterface: BaseInputInterface {}
 
 protocol SignInUpOutputInterface: BaseOutputInterface {
     func showEmailScreen()
+    func showInDeveloping()
 }
 
 // MARK: - SignInUpDependency

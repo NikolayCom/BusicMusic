@@ -1,4 +1,5 @@
 import Core
+import Common
 
 final class AuthCoordinator: BaseCoordinator {
     private weak var assembly: AuthAssembly?
@@ -38,11 +39,15 @@ extension AuthCoordinator: OnBoardingOutputInterface {
 
 extension AuthCoordinator: SignInUpOutputInterface {
     func showEmailScreen() {
-        guard let email = assembly?.makeEmail(output: self) else { return }
-        navigationController.pushViewController(email, animated: true)
+        print("making")
+    }
+
+    func showInDeveloping() {
+        guard let inDeveloping = assembly?.makeInDeveloping(output: self) else { return }
+        navigationController.pushViewController(inDeveloping, animated: true)
     }
 }
 
-// MARK: EmailOutputInterface
+// MARK: InDevelopingOutputInterface
 
-extension AuthCoordinator: EmailOutputInterface {}
+extension AuthCoordinator: InDevelopingOutputInterface {}

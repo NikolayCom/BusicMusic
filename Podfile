@@ -25,7 +25,6 @@ def external_pods
 
 # SignIn
   pod 'GoogleSignIn', '~> 7.0.0'
-  pod 'FacebookLogin'
 
 # Debug panel
   pod "DBDebugToolkit", '~> 0.8.0', :configurations => ['Debug']
@@ -44,6 +43,7 @@ def developmet_pods
   pod "UseCases", :path => "./Modules/UseCases"
   pod "Auth", :path => "./Modules/Auth"
   pod "Models", :path => "./Modules/Models"
+  pod "Common", :path => "./Modules/Common"
 end
 
 # Targerts

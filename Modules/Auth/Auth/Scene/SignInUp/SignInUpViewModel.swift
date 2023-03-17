@@ -54,13 +54,13 @@ final class SignInUpViewModel: BaseViewModel<
 
     private func performAction(with type: AuthType) {
         switch type {
-        case .facebook, .google:
+        case .google:
             self.authUser(with: type) { [weak self] in
                 self?.config.output?.showEmailScreen()
             }
 
-        case .apple:
-            self.config.output?.showEmailScreen()
+        case .apple, .facebook:
+            self.config.output?.showInDeveloping()
 
         case .email:
             self.config.output?.showEmailScreen()
