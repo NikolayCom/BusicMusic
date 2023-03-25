@@ -26,5 +26,5 @@
 "auth.email.email" = "EMAIL";
 "auth.email.password" = "PASSWORD";
 "auth.email.createAccount" = "CREATE YOUR ACCOUNT";
-"auth.email.information" = "Your information is secure with us. Users will be able to search for your name or email address";
+"auth.email.information" = "Your information is secure with us. Users will be able to search for your name or email address.";
 "auth.email.passwordInfo" = "Min 8 char";

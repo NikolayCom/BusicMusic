@@ -9,15 +9,15 @@ import Then
 private extension AppearanceConstants {
     var backgroundViewColor: UIColor? { Resources.colors.cffffff.color }
     var borderViewColor: UIColor? { Resources.colors.c191414.color }
-    var placeholderColor: UIColor? { Resources.colors.c191414.color }
-    var standardTextColor: UIColor? { Resources.colors.cffffff.color }
+    // var placeholderColor: UIColor? { Resources.colors.c191414.color }
+    var standardTextColor: UIColor? { Resources.colors.c191414.color }
     var errorColor: UIColor? { Resources.colors.ce50914.color }
     var animationDuration: Double { 0.3 }
     var backgroundViewColorAlpha: Double { 0.2 }
     var errorFont: UIFont { Resources.font(type: .medium, size: 14) }
     var standardFont: UIFont { Resources.font(type: .medium, size: 16) }
-    var heightMultipler: CGFloat { 0.2 }
-    var backgroundViewBorderWidth: CGFloat { 1 }
+    // var heightMultipler: CGFloat { 0.2 }
+    var backgroundViewBorderWidth: CGFloat { 2 }
 }
 
 private extension DataConstants {
@@ -29,7 +29,7 @@ private extension GridConstants {
     var textFieldBackgroundHeight: CGFloat { 52 }
     var errorLabelHeight: CGFloat { 16 }
 
-    var cornerRadius: CGFloat { 16 }
+    var cornerRadius: CGFloat { 2 }
 }
 
 //// MARK: - MainTextFieldDelegate
@@ -60,6 +60,11 @@ public final class MainTextFieldView: UIView {
     public var text: String? {
         get { self.textField.text }
         set { self.textField.text = newValue }
+    }
+
+    public var placeholder: String? {
+        get { textField.placeholder }
+        set { textField.placeholder = newValue }
     }
 
     public var errorKey: String? {
@@ -104,7 +109,7 @@ public final class MainTextFieldView: UIView {
     private lazy var textField = UITextField().then {
         $0.delegate = self
         $0.font = appearance.standardFont
-        $0.textColor = .green // appearance.standardTextColor
+        $0.textColor = appearance.standardTextColor
         $0.autocorrectionType = .no
         $0.spellCheckingType = .no
         $0.addTarget(self, action: #selector(textFieldEditing), for: .editingChanged)

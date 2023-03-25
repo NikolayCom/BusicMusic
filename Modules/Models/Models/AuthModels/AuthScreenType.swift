@@ -14,15 +14,45 @@ public enum AuthScreenType {
             return (authStrings.SignIn.welcome, authStrings.SignIn.logIn)
         }
     }
+}
 
+// MARK: - Auth/Reg with email screen
+
+public extension AuthScreenType {
     public var emailButtonText: String {
-        let emailStrings = Resources.strings.Auth.SignUp.Email
+        let emailStrings = Resources.strings.Auth.Email
         switch self {
         case .login:
             return emailStrings.login
 
         case .registration:
             return emailStrings.join
+        }
+    }
+
+    public var emailTitleSubtitle: (title: String, subtitle: String)? {
+        let emailStrings = Resources.strings.Auth.Email
+        switch self {
+        case .login:
+            return nil
+
+        case .registration:
+            return (emailStrings.createAccount, emailStrings.information)
+        }
+    }
+
+    public var emailScreenDataTypes: [AuthRequiredDataType.DataSection] {
+        switch self {
+        case .login:
+            return [
+                [.email, .password]
+            ]
+
+        case .registration:
+            return [
+                [.firstName, .lastName],
+                [.email, .password]
+            ]
         }
     }
 }

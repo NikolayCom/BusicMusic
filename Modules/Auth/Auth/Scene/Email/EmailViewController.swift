@@ -14,7 +14,7 @@ public final class EmailViewController: BaseViewController<
     public override func setup() {
         super.setup()
 
-        pinContentViewFull()
+        pinContentView()
     }
 }
 
