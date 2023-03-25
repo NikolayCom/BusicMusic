@@ -9,14 +9,12 @@ import Then
 private extension AppearanceConstants {
     var backgroundViewColor: UIColor? { Resources.colors.cffffff.color }
     var borderViewColor: UIColor? { Resources.colors.c191414.color }
-    // var placeholderColor: UIColor? { Resources.colors.c191414.color }
     var standardTextColor: UIColor? { Resources.colors.c191414.color }
     var errorColor: UIColor? { Resources.colors.ce50914.color }
     var animationDuration: Double { 0.3 }
     var backgroundViewColorAlpha: Double { 0.2 }
     var errorFont: UIFont { Resources.font(type: .medium, size: 14) }
     var standardFont: UIFont { Resources.font(type: .medium, size: 16) }
-    // var heightMultipler: CGFloat { 0.2 }
     var backgroundViewBorderWidth: CGFloat { 2 }
 }
 
