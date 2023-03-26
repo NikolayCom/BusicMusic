@@ -8,6 +8,8 @@ public enum UIError: Error {
 
     case developError
 
+    case validation(message: String)
+
     public var message: String? {
         // to do: Добавить в локализацию
         let strings = Resources.strings
@@ -17,6 +19,9 @@ public enum UIError: Error {
 
         case .developError:
             return "Develop Error"
+
+        case .validation(let text):
+            return text
         }
     }
 }

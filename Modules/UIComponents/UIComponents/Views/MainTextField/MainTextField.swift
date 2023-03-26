@@ -31,18 +31,9 @@ private extension GridConstants {
 }
 
 //// MARK: - MainTextFieldDelegate
-//
-//public protocol MainTextFieldDelegate: AnyObject {
-//    func textFieldEndEdditing(text: String, type: MainTextFieldType)
-//    func textFieldShouldReturn(type: MainTextFieldType)
-//    func textFieldEditing(text: String, type: MainTextFieldType)
-//}
-//
-//public extension MainTextFieldDelegate {
-//    func textFieldEndEdditing(text: String, type: MainTextFieldType) {}
-//    func textFieldShouldReturn(type: MainTextFieldType) {}
-//    func textFieldEditing(text: String, type: MainTextFieldType) {}
-//}
+public protocol MainTextFieldDelegate: AnyObject {
+    func textFieldEditing(text: String, id: String)
+}
 
 // MARK: - MainTextFieldView
 
@@ -67,7 +58,7 @@ public final class MainTextFieldView: UIView {
 
     public var errorKey: String? {
         didSet {
-            // self.errorLabel.localize(key: self.errorKey)
+            self.errorLabel.text = errorKey
         }
     }
 
@@ -91,8 +82,8 @@ public final class MainTextFieldView: UIView {
         set { self.validationBasedSettings(isValid: newValue) }
     }
 
-    // public var type: MainTextFieldType = .none
-    // public weak var delegate: MainTextFieldDelegate?
+    private let id: String
+    public weak var delegate: MainTextFieldDelegate?
 
     // MARK: - Subview Properties
 
@@ -116,12 +107,15 @@ public final class MainTextFieldView: UIView {
     private lazy var errorLabel = UILabel().then {
         $0.isHidden = true
         $0.font = appearance.errorFont
-        $0.textColor = .yellow // appearance.errorColor
+        $0.textColor = appearance.errorColor
         $0.numberOfLines = .zero
     }
 
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
+    public init(id: String) {
+        self.id = id
+
+        super.init(frame: .zero)
+
         self.commonInit()
     }
 
@@ -138,7 +132,7 @@ public final class MainTextFieldView: UIView {
     // MARK: - Public Methods
 
     public func showError(with text: String) {
-        // self.errorLabel.localize(key: text)
+        self.errorLabel.text = text
         self.validationBasedSettings(isValid: false)
     }
 
@@ -200,39 +194,12 @@ public final class MainTextFieldView: UIView {
 
 extension MainTextFieldView: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // self.delegate?.textFieldShouldReturn(type: self.type)
         return true
-    }
-
-    public func textFieldDidEndEditing(_ textField: UITextField) {
-        // self.textField.localize(key: self.textField.text?.trimmingCharacters(in: .whitespaces) ?? "")
-        let text = self.textField.text.orEmpty
-        // self.delegate?.textFieldEndEdditing(text: text, type: self.type)
     }
 
     @objc
     private func textFieldEditing() {
-        guard
-            let symbolsCount = self.textField.text?.count,
-            symbolsCount >= data.minSymbolsCount
-        else { return }
-
-        //        switch self.type {
-        //        case .lastName, .firstName:
-        //            let text = self.textField.text.orEmpty
-        //            self.delegate?.textFieldEditing(text: text, type: self.type)
-        //            guard
-        //                let symbolsCount = self.textField.text?.count,
-        //                symbolsCount >= data.minSymbolsCount
-        //            else { return }
-        //            self.delegate?.textFieldEditing(text: self.textField.text.orEmpty, type: self.type)
-        //
-        //        case .email:
-        //            self.delegate?.textFieldEditing(text: self.textField.text.orEmpty, type: self.type)
-        //
-        //        default:
-        //            return
-        //        }
+        self.delegate?.textFieldEditing(text: self.textField.text.orEmpty, id: self.id)
     }
 }
 

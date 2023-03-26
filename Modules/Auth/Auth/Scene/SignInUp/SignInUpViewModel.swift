@@ -38,16 +38,18 @@ final class SignInUpViewModel: BaseViewModel<
         )
     }
 
-    private func authUser(with type: AuthType, completion: @escaping Action) {
+    private func authGoogleUser(with type: AuthType, completion: @escaping Action) {
         let controller = controller as? UIViewController
-        self.config.dependency?.authUseCase.authUser(with: type, instance: controller) { [weak self] result in
+        self.controller.showHud()
+        self.config.dependency?.authUseCase.authWithGoogleAccount(instance: controller) { [weak self] result in
             guard let self = self else { return }
+            self.controller.hideHud()
             switch result {
             case .value:
                 completion()
 
             case .error(let error):
-                print(error.message)
+                self.controller.showErrorBanner(with: error.message.orEmpty)
             }
         }
     }
@@ -55,7 +57,7 @@ final class SignInUpViewModel: BaseViewModel<
     private func performAction(with type: AuthType) {
         switch type {
         case .google:
-            self.authUser(with: type) { [weak self] in
+            self.authGoogleUser(with: type) { [weak self] in
                 guard let self = self else { return }
                 self.config.output?.showEmailScreen(with: self.config.screenType)
             }

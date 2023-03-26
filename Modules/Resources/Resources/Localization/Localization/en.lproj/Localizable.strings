@@ -1,6 +1,7 @@
 // MARK: - Common
 
 "common.or" = "OR";
+"common.error" = "Error";
 
 // MARK: - Auth
 
@@ -28,3 +29,9 @@
 "auth.email.createAccount" = "CREATE YOUR ACCOUNT";
 "auth.email.information" = "Your information is secure with us. Users will be able to search for your name or email address.";
 "auth.email.passwordInfo" = "Min 8 char";
+
+"auth.error.incorrectEmail" = "Incorrect email data.";
+"auth.error.incorrectPassword" = "Incorrect password lengths.";
+"auth.error.incorrectName" = "Incorrect name data.";
+"auth.error.empty" = "Please fill this data.";
+

@@ -18,5 +18,7 @@ Pod::Spec.new do |spec|
   spec.dependency "SnapKit"
   spec.dependency "Constants"
   spec.dependency "UIComponents"
+  spec.dependency "IQKeyboardManagerSwift"
+  spec.dependency "NotificationBannerSwift"
 end
 

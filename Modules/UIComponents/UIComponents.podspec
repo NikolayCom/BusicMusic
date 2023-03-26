@@ -20,5 +20,4 @@ Pod::Spec.new do |spec|
   spec.dependency "SnapKit"
   spec.dependency "Then"
   spec.dependency "SDWebImage"
-  spec.dependency "NVActivityIndicatorView"
 end

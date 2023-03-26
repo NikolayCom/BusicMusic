@@ -8,14 +8,17 @@ def external_pods
 # Constraints
   pod 'SnapKit', '~> 5.0.1'
 
-# Loader
-  pod 'NVActivityIndicatorView'
-
 # Load image
   pod 'SDWebImage', '~> 5.0'
 
 # Initialization
   pod 'Then', '~> 2.7.0'
+
+# Keyboard
+  pod 'IQKeyboardManagerSwift', '~> 6.3.0'
+
+# Notifications
+  pod 'NotificationBannerSwift', '~> 3.0.0'
 
 # Firebase
   pod 'Firebase'

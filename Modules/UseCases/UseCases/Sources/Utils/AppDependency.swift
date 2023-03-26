@@ -8,19 +8,27 @@ public protocol HasAuthUseCase {
 
 public protocol AppDependency: HasAuthUseCase {}
 
+// MARK: Impl
+
 public class AppDependencyImpl {
     private let requestsAssembly: RequestsAssembly
+    private let commonAssembly: CommonAssembly
 
     public lazy var authUseCase: AuthUseCase = AuthUseCaseImpl(
-        firebaseAuthRequestService: requestsAssembly.firebaseAuthRequestService
+        firebaseAuthRequestService: requestsAssembly.firebaseAuthRequestService,
+        validator: commonAssembly.validator
     )
 
-    private init(requestsAssembly: RequestsAssembly) {
+    private init(requestsAssembly: RequestsAssembly, commonAssembly: CommonAssembly) {
         self.requestsAssembly = requestsAssembly
+        self.commonAssembly = commonAssembly
     }
 
     public convenience init() {
-        self.init(requestsAssembly: RequestsAssemblyImpl())
+        self.init(
+            requestsAssembly: RequestsAssemblyImpl(),
+            commonAssembly: CommonAssemblyImpl()
+        )
     }
 }
 

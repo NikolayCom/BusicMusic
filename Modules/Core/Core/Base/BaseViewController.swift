@@ -3,6 +3,8 @@ import Constants
 import SnapKit
 import UIComponents
 import Resources
+import IQKeyboardManagerSwift
+import NotificationBannerSwift
 
 // swiftlint:disable file_length
 
@@ -28,6 +30,7 @@ public protocol BaseViewControllerInterface: ViewControllerInterface, BaseViewCo
 public protocol BaseViewControllerProtocol {
     func showHud()
     func hideHud()
+    func showErrorBanner(with message: String)
 }
 
 // MARK: - UIBarButtonItemSide
@@ -55,11 +58,9 @@ open class BaseViewController<View, ViewModel>: UIViewController {
         set { self.overrideUserInterfaceStyle = newValue }
     }
 
-    public lazy var activityIndicatorView: UIView = ActivityIndicatorView(frame: .zero).then {
-        $0.snp.makeConstraints {
-            $0.size.equalTo(grid.space48)
-        }
-    }
+    open var shouldHideKeyboardOnTouchOutside: Bool { false }
+
+    public var activityIndicatorView = ActivityIndicator()
 
     public var contentView: View!
     public var viewModel: ViewModel!
@@ -100,12 +101,14 @@ open class BaseViewController<View, ViewModel>: UIViewController {
     open func showHud() {
         view.addSubview(self.activityIndicatorView)
         self.activityIndicatorView.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
+
+        self.activityIndicatorView.isShowing = true
     }
 
     open func hideHud() {
-        self.activityIndicatorView.removeFromSuperview()
+        self.activityIndicatorView.isShowing = false
     }
 
     open func setup() {
@@ -113,6 +116,7 @@ open class BaseViewController<View, ViewModel>: UIViewController {
         self.userThemeStyle = .light
 
         view.backgroundColor = appearance.whiteColor
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = self.shouldHideKeyboardOnTouchOutside
     }
 
     public func pinContentView(
@@ -183,7 +187,15 @@ open class BaseViewController<View, ViewModel>: UIViewController {
 
 // MARK: - BaseViewControllerProtocol
 
-extension BaseViewController: BaseViewControllerProtocol {}
+extension BaseViewController: BaseViewControllerProtocol {
+    public func showErrorBanner(with message: String) {
+        NotificationBanner(
+            title: Resources.strings.Common.error,
+            subtitle: message,
+            style: .warning
+        ).show()
+    }
+}
 
 // MARK: - BaseViewControllerInterface
 

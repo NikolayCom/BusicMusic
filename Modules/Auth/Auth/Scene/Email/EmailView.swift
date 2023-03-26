@@ -72,13 +72,6 @@ public class EmailView: BaseView<EmailViewModelInterface> {
 
     // MARK: - Setups
 
-
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-
-        // textFieldsScrollView.contentSize = mainContainer.frame.size
-    }
-
     public override func setupUI() {
         super.setupUI()
 
@@ -129,7 +122,9 @@ public class EmailView: BaseView<EmailViewModelInterface> {
 
     // MARK: Actions
 
-    @objc func actionButtonTapped() {}
+    @objc func actionButtonTapped() {
+        self.viewModel.actionButtonDidTap()
+    }
 }
 
 // MARK: - EmailView
@@ -140,10 +135,13 @@ extension EmailView: EmailViewInterface {
         self.dividers = []
 
         self.viewModel.textFieldsModel.forEach { section in
-            section.forEach { raw in
+            section.forEach { type in
                 textFieldsStackView.addArrangedSubview(
-                    MainTextFieldView().then {
-                        $0.placeholder = raw.type
+                    MainTextFieldView(id: type.rawValue).then {
+                        $0.keyboardType = type.keyboardConfig.type
+                        $0.isSecureTextEntry = type.keyboardConfig.isSecure
+                        $0.placeholder = type.placeholder
+                        $0.delegate = viewModel
                     }
                 )
             }

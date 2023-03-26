@@ -8,7 +8,9 @@ public protocol EmailInputInterface: BaseInputInterface {}
 
 // MARK: - EmailOutputInterface
 
-public protocol EmailOutputInterface: BaseOutputInterface {}
+public protocol EmailOutputInterface: BaseOutputInterface {
+    func showInDeveloping()
+}
 
 // MARK: - EmailDependency
 
