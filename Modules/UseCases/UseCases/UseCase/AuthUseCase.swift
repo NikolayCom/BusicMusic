@@ -5,8 +5,8 @@ import Resources
 // MARK: - AuthUseCase
 
 public protocol AuthUseCase {
-    func authWithGoogleAccount(instance: UIViewController?, completion: @escaping UICompletionResult<Void>)
-    func authWithEmailAccount(with data: User, screenType: AuthScreenType, completion: @escaping UICompletionResult<Void>)
+    func authWithGoogleAccount(instance: UIViewController?, completion: @escaping UICompletionResult<EmailUser>)
+    func authWithEmailAccount(with data: EmailUser, screenType: AuthScreenType, completion: @escaping UICompletionResult<EmailUser>)
 }
 
 // MARK: - AuthUseCaseImpl
@@ -24,7 +24,7 @@ public class AuthUseCaseImpl: BaseUseCase {
         self.validator = validator
     }
 
-    private func validateUserData(with user: User, screenType: AuthScreenType) -> UIResult<Void> {
+    private func validateUserData(with user: EmailUser, screenType: AuthScreenType) -> UIResult<Void> {
         var validationResults = [
             validateEmail(email: user.email),
             validatePassword(password: user.password)
@@ -53,17 +53,25 @@ public class AuthUseCaseImpl: BaseUseCase {
 // MARK: - AuthUseCase
 
 extension AuthUseCaseImpl: AuthUseCase {
-    public func authWithEmailAccount(with data: User, screenType: AuthScreenType, completion: @escaping UICompletionResult<Void>) {
+    public func authWithEmailAccount(with data: EmailUser, screenType: AuthScreenType, completion: @escaping UICompletionResult<EmailUser>) {
         switch validateUserData(with: data, screenType: screenType) {
         case .value:
-            print("Success")
+            self.firebaseAuthRequestService.authWithEmailAccount(data: data, authType: screenType) { [weak self] result in
+                switch result {
+                case .value:
+                    completion(.value(data))
+
+                case .error(let error):
+                    completion(.error(error))
+                }
+            }
 
         case .error(let error):
             completion(.error(error))
         }
     }
 
-    public func authWithGoogleAccount(instance: UIViewController?, completion: @escaping UICompletionResult<Void>) {
+    public func authWithGoogleAccount(instance: UIViewController?, completion: @escaping UICompletionResult<EmailUser>) {
         guard let controller = instance else { return }
         self.firebaseAuthRequestService.authWithGoogleAccount(with: controller, completion: completion)
     }
@@ -72,7 +80,7 @@ extension AuthUseCaseImpl: AuthUseCase {
 // MARK: AuthUseCaseImpl + Validation
 
 extension AuthUseCaseImpl {
-    public func validateEmail(email: String) -> UIResult<Void> {
+    private func validateEmail(email: String) -> UIResult<Void> {
         let errorString = Resources.strings.Auth.Error
         guard self.validator.isEmail(email) else {
             let errorText = email.isEmpty ? errorString.empty : errorString.incorrectEmail
@@ -81,7 +89,7 @@ extension AuthUseCaseImpl {
         return .value(())
     }
 
-    public func validateName(name: String) -> UIResult<Void> {
+    private func validateName(name: String) -> UIResult<Void> {
         let errorString = Resources.strings.Auth.Error
         guard self.validator.isName(name) else {
             let errorText = name.isEmpty ? errorString.empty : errorString.incorrectName
@@ -90,7 +98,7 @@ extension AuthUseCaseImpl {
         return .value(())
     }
 
-    public func validatePassword(password: String) -> UIResult<Void> {
+    private func validatePassword(password: String) -> UIResult<Void> {
         let errorString = Resources.strings.Auth.Error
         let minPasswordLengths: Int = 6
         guard password.count >= minPasswordLengths else {

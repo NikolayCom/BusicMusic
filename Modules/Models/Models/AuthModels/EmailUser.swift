@@ -1,6 +1,6 @@
 import Foundation
 
-public struct User {
+public struct EmailUser {
     public var firstName: String
     public var lastName: String
     public var email: String
@@ -21,7 +21,7 @@ public struct User {
 
 // MARK: User setup
 
-extension User {
+extension EmailUser {
     public mutating func setValue(with type: AuthRequiredDataType, value: String) {
         switch type {
         case .firstName:

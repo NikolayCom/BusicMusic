@@ -23,7 +23,7 @@ public final class EmailViewModel: BaseViewModel<
 
     public var textFieldsModel: [TextFieldSectionData] = []
 
-    public var userModel = User()
+    public var userModel = EmailUser()
 
     public override func viewLoaded() {
         super.viewLoaded()
@@ -62,7 +62,6 @@ public final class EmailViewModel: BaseViewModel<
                 completion()
 
             case .error(let error):
-
                 self.controller.showErrorBanner(with: error.message.orEmpty)
             }
         }
@@ -74,8 +73,8 @@ public final class EmailViewModel: BaseViewModel<
 extension EmailViewModel: EmailViewModelInterface {
     public func actionButtonDidTap() {
         self.controller.showHud()
-        performEmailAuth { [weak self] in
-            print("suh`gunjk")
+        self.performEmailAuth { [weak self] in
+            self?.config.output?.showInDeveloping()
         }
     }
 }

@@ -2,12 +2,17 @@ import FirebaseAuth
 import FirebaseCore
 import GoogleSignIn
 import Core
+import Models
+import Extensions
 
 // MARK: - FirebaseAuthRequestService
 
 protocol FirebaseAuthRequestService {
-    func authWithGoogleAccount(with presentedView: UIViewController, completion: @escaping UICompletionResult<Void>)
+    func authWithGoogleAccount(with presentedView: UIViewController, completion: @escaping UICompletionResult<EmailUser>)
     func authWithFacebookAccount(completion: @escaping UICompletionResult<Void>)
+
+    func authWithEmailAccount(data: EmailUser, authType: AuthScreenType, completion: @escaping UICompletionResult<Void>)
+
     func signOut()
 }
 
@@ -43,31 +48,24 @@ final class FirebaseAuthRequestServiceImpl: BackgroundWorker {
 
         FirebaseApp.configure(options: options)
     }
-
-    private func signIn(with credential: AuthCredential, completion: @escaping UICompletionResult<Void>) {
-        backgroundTask {
-            self.authorization.signIn(with: credential) { result, error in
-                guard error == nil else {
-                    self.foregroundTask {
-                        completion(.error(.auth))
-                    }
-                    return 
-                }
-
-                self.foregroundTask {
-                    completion(.value(()))
-                }
-            }
-        }
-    }
 }
 
 // MARK: - FirebaseAuthRequestService
 
 extension FirebaseAuthRequestServiceImpl: FirebaseAuthRequestService {
+    func authWithEmailAccount(data: EmailUser, authType: AuthScreenType, completion: @escaping UICompletionResult<Void>) {
+        switch authType {
+        case .registration:
+            self.createEmail(with: data.email, password: data.password, completion: completion)
+
+        case .login:
+            self.signInEmail(with: data.email, password: data.password, completion: completion)
+        }
+    }
+
     func authWithFacebookAccount(completion: @escaping UICompletionResult<Void>) { }
 
-    func authWithGoogleAccount(with presentedView: UIViewController, completion: @escaping UICompletionResult<Void>) {
+    func authWithGoogleAccount(with presentedView: UIViewController, completion: @escaping UICompletionResult<EmailUser>) {
         self.signInWithGoogle(controller: presentedView, completion: completion)
     }
 
@@ -80,10 +78,52 @@ extension FirebaseAuthRequestServiceImpl: FirebaseAuthRequestService {
     }
 }
 
+
+// MARK: FirebaseAuthRequestService + EmailAuth
+
+extension FirebaseAuthRequestServiceImpl {
+    func signInEmail(with email: String, password: String, completion: @escaping UICompletionResult<Void>) {
+        backgroundTask {
+            Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+                guard let self = self else { return }
+                guard error == nil else {
+                    print(error)
+                    self.foregroundTask {
+                        completion(.error(.auth))
+                    }
+                    return
+                }
+
+                self.foregroundTask {
+                    completion(.value(()))
+                }
+            }
+        }
+    }
+
+    func createEmail(with email: String, password: String, completion: @escaping UICompletionResult<Void>) {
+        backgroundTask {
+            Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+                guard let self = self else { return }
+                guard error == nil else {
+                    print(error)
+                    self.foregroundTask {
+                        completion(.error(.developError))
+                    }
+                    return
+                }
+
+                self.signInEmail(with: email, password: password, completion: completion)
+            }
+        }
+    }
+}
+
+
 // MARK: - FirebaseAuthRequestService + GoogleAuth
 
 extension FirebaseAuthRequestServiceImpl {
-    private func signInWithGoogle(controller: UIViewController, completion: @escaping UICompletionResult<Void>) {
+    private func signInWithGoogle(controller: UIViewController, completion: @escaping UICompletionResult<EmailUser>) {
         self.googleSignIn.signIn(withPresenting: controller) { [unowned self] result, error in
             guard error == nil else {
                 return print("Completed with error: \(error?.localizedDescription)")
@@ -98,6 +138,31 @@ extension FirebaseAuthRequestServiceImpl {
             )
 
             self.signIn(with: credential, completion: completion)
+        }
+    }
+
+    private func signIn(with credential: AuthCredential, completion: @escaping UICompletionResult<EmailUser>) {
+        backgroundTask {
+            self.authorization.signIn(with: credential) { [weak self] result, error in
+                guard let self = self else { return }
+                guard error == nil else {
+                    self.foregroundTask {
+                        completion(.error(.auth))
+                    }
+                    return
+                }
+
+                let user = result?.user
+                let value = EmailUser(
+                    firstName: (user?.displayName).orEmpty,
+                    lastName: (user?.displayName).orEmpty,
+                    email: (user?.email).orEmpty
+                )
+
+                self.foregroundTask {
+                    completion(.value(value))
+                }
+            }
         }
     }
 }
