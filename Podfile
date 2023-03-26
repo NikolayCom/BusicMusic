@@ -25,6 +25,8 @@ def external_pods
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Crashlytics'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
 
 # SignIn
   pod 'GoogleSignIn', '~> 7.0.0'
@@ -47,6 +49,7 @@ def developmet_pods
   pod "Auth", :path => "./Modules/Auth"
   pod "Models", :path => "./Modules/Models"
   pod "Common", :path => "./Modules/Common"
+  pod "Main", :path => "./Modules/Main"
 end
 
 # Targerts

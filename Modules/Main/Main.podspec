@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
-  spec.name         = "Auth"
+  spec.name         = "Main"
   spec.version      = "0.0.1"
-  spec.summary      = "Auth"
+  spec.summary      = "Main"
   spec.description  = <<-DESC
   Design module
                    DESC
@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "14.0"
   spec.swift_version = "5.6.1"
   spec.source       = { :path => "." }
-  spec.source_files  = "Auth/**/*.{h,m,swift}"
+  spec.source_files  = "Main/**/*.{h,m,swift}"
 
   spec.frameworks = "Foundation"
 
@@ -20,5 +20,4 @@ Pod::Spec.new do |spec|
   spec.dependency "UseCases"
   spec.dependency "Resources"
   spec.dependency "Models"
-  spec.dependency "Main"
 end

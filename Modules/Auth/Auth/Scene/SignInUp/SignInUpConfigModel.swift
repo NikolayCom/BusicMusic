@@ -11,6 +11,7 @@ protocol SignInUpInputInterface: BaseInputInterface {}
 protocol SignInUpOutputInterface: BaseOutputInterface {
     func showEmailScreen(with screenType: AuthScreenType)
     func showInDeveloping()
+    func showMain()
 }
 
 // MARK: - SignInUpDependency

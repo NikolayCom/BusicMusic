@@ -6,22 +6,29 @@ import Resources
 
 public protocol AuthUseCase {
     func authWithGoogleAccount(instance: UIViewController?, completion: @escaping UICompletionResult<EmailUser>)
-    func authWithEmailAccount(with data: EmailUser, screenType: AuthScreenType, completion: @escaping UICompletionResult<EmailUser>)
+    func authWithEmailAccount(
+        with data: EmailUser, screenType: AuthScreenType, completion: @escaping UICompletionResult<EmailUser>
+    )
 }
 
 // MARK: - AuthUseCaseImpl
 
 public class AuthUseCaseImpl: BaseUseCase {
     private let firebaseAuthRequestService: FirebaseAuthRequestService
+    private let firebaseUserStorageService: FirebaseUserStorageService
 
     let validator: Validator
 
     init(
         firebaseAuthRequestService: FirebaseAuthRequestService,
+        firebaseUserStorageService: FirebaseUserStorageService,
         validator: Validator
     ) {
         self.firebaseAuthRequestService = firebaseAuthRequestService
+        self.firebaseUserStorageService = firebaseUserStorageService
         self.validator = validator
+
+        firebaseUserStorageService.self
     }
 
     private func validateUserData(with user: EmailUser, screenType: AuthScreenType) -> UIResult<Void> {

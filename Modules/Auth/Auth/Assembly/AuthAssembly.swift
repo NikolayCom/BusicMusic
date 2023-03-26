@@ -2,11 +2,14 @@ import Core
 import UseCases
 import Common
 import Models
+import Main
 
 // MARK: - AuthAssembly
 
 protocol AuthAssembly: BaseAssembly {
     var rootAssembly: RootAssembly { get }
+
+    func makeMainAssembly(nvc: UINavigationController) -> MainAssembly
 
     func makeSplash(output: SplashOutputInterface?) -> SplashViewController
     func makeOnBoarding(output: OnBoardingOutputInterface?) -> OnBoardingViewController
@@ -49,6 +52,14 @@ public final class AuthAssemblyImpl: BaseAssembly {
 // MARK: - AuthAssembly
 
 extension AuthAssemblyImpl: AuthAssembly {
+    func makeMainAssembly(nvc: UINavigationController) -> MainAssembly {
+        MainAssemblyImpl(
+            navigationController: nvc,
+            rootAssembly: self.rootAssembly,
+            appDependency: self.appDependency
+        )
+    }
+
     func makeEmail(type: AuthScreenType, output: EmailOutputInterface?) -> EmailViewController {
         EmailSceneAssembly(
             config: EmailConfigModel(

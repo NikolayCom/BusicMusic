@@ -16,6 +16,7 @@ public class AppDependencyImpl {
 
     public lazy var authUseCase: AuthUseCase = AuthUseCaseImpl(
         firebaseAuthRequestService: requestsAssembly.firebaseAuthRequestService,
+        firebaseUserStorageService: requestsAssembly.firebaseUserStorageService,
         validator: commonAssembly.validator
     )
 

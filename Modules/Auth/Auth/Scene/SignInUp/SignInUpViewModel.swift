@@ -59,7 +59,7 @@ final class SignInUpViewModel: BaseViewModel<
         case .google:
             self.authGoogleUser(with: type) { [weak self] in
                 guard let self = self else { return }
-                self.config.output?.showEmailScreen(with: self.config.screenType)
+                self.config.output?.showMain()
             }
 
         case .apple, .facebook:

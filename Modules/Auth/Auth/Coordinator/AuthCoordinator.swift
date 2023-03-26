@@ -16,6 +16,14 @@ final class AuthCoordinator: BaseCoordinator {
         navigationController.setViewControllers([splash], animated: true)
     }
 
+    func showMain() {
+        guard
+            let mainCoordinator = assembly?.makeMainAssembly(nvc: navigationController).coordinator()
+        else { return }
+        add(child: mainCoordinator)
+        mainCoordinator.start()
+    }
+
     private func removeChilds() {
         children.forEach {
             remove(child: $0)
