@@ -74,7 +74,7 @@ extension EmailViewModel: EmailViewModelInterface {
     public func actionButtonDidTap() {
         self.controller.showHud()
         self.performEmailAuth { [weak self] in
-            self?.config.output?.showMain()
+            self?.config.output?.showHomeBox()
         }
     }
 }

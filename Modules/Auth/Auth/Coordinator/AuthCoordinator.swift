@@ -1,6 +1,7 @@
 import Core
 import Common
 import Models
+import HomeBox
 
 final class AuthCoordinator: BaseCoordinator {
     private weak var assembly: AuthAssembly?
@@ -16,12 +17,12 @@ final class AuthCoordinator: BaseCoordinator {
         navigationController.setViewControllers([splash], animated: true)
     }
 
-    func showMain() {
+    func showHomeBox() {
         guard
-            let mainCoordinator = assembly?.makeMainAssembly(nvc: navigationController).coordinator()
+            let homeBoxCoordinator = assembly?.makeHomeBoxAssembly(nvc: navigationController).coordinator()
         else { return }
-        add(child: mainCoordinator)
-        mainCoordinator.start()
+        add(child: homeBoxCoordinator)
+        homeBoxCoordinator.start()
     }
 
     private func removeChilds() {

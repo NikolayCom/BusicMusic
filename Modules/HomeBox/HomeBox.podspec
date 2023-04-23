@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
-  spec.name         = "Auth"
+  spec.name         = "HomeBox"
   spec.version      = "0.0.1"
-  spec.summary      = "Auth"
+  spec.summary      = "HomeBox"
   spec.description  = <<-DESC
   Design module
                    DESC
@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "14.0"
   spec.swift_version = "5.6.1"
   spec.source       = { :path => "." }
-  spec.source_files  = "Auth/**/*.{h,m,swift}"
+  spec.source_files  = "HomeBox/**/*.{h,m,swift}"
 
   spec.frameworks = "Foundation"
 
@@ -20,6 +20,7 @@ Pod::Spec.new do |spec|
   spec.dependency "UseCases"
   spec.dependency "Resources"
   spec.dependency "Models"
-  spec.dependency "Main"
-  spec.dependency "HomeBox"
+
+  spec.dependency "lottie-ios"
+  spec.dependency "Pulsator"
 end

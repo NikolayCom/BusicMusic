@@ -9,7 +9,7 @@ public protocol EmailInputInterface: BaseInputInterface {}
 // MARK: - EmailOutputInterface
 
 public protocol EmailOutputInterface: BaseOutputInterface {
-    func showMain()
+    func showHomeBox()
 }
 
 // MARK: - EmailDependency

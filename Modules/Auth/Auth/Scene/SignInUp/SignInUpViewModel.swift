@@ -17,8 +17,10 @@ final class SignInUpViewModel: BaseViewModel<
 > {
     override func viewLoaded() {
         super.viewLoaded()
-
+        
         self.configure()
+
+        self.config.output?.showHomeBox()
     }
 
     private func configure() {
@@ -59,7 +61,7 @@ final class SignInUpViewModel: BaseViewModel<
         case .google:
             self.authGoogleUser(with: type) { [weak self] in
                 guard let self = self else { return }
-                self.config.output?.showMain()
+                self.config.output?.showHomeBox()
             }
 
         case .apple, .facebook:

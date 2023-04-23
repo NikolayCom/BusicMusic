@@ -126,6 +126,7 @@ extension FirebaseAuthRequestServiceImpl {
     private func signInWithGoogle(controller: UIViewController, completion: @escaping UICompletionResult<EmailUser>) {
         self.googleSignIn.signIn(withPresenting: controller) { [unowned self] result, error in
             guard error == nil else {
+                completion(.error(.auth))
                 return print("Completed with error: \(error?.localizedDescription)")
             }
 
