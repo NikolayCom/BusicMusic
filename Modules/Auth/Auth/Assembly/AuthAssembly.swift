@@ -3,13 +3,16 @@ import UseCases
 import Common
 import Models
 import Main
+import HomeBox
 
 // MARK: - AuthAssembly
 
 protocol AuthAssembly: BaseAssembly {
     var rootAssembly: RootAssembly { get }
+    var appDependency: AppDependency { get }
 
     func makeMainAssembly(nvc: UINavigationController) -> MainAssembly
+    func makeHomeBoxAssembly(nvc: UINavigationController) -> HomeBoxAssembly
 
     func makeSplash(output: SplashOutputInterface?) -> SplashViewController
     func makeOnBoarding(output: OnBoardingOutputInterface?) -> OnBoardingViewController
@@ -52,6 +55,14 @@ public final class AuthAssemblyImpl: BaseAssembly {
 // MARK: - AuthAssembly
 
 extension AuthAssemblyImpl: AuthAssembly {
+    func makeHomeBoxAssembly(nvc: UINavigationController) -> HomeBoxAssembly {
+        HomeBoxAssemblyImpl(
+            navigationController: nvc,
+            rootAssembly: self.rootAssembly,
+            appDependency: self.appDependency
+        )
+    }
+
     func makeMainAssembly(nvc: UINavigationController) -> MainAssembly {
         MainAssemblyImpl(
             navigationController: nvc,

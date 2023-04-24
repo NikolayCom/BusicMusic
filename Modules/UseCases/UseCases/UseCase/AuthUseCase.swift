@@ -5,10 +5,16 @@ import Resources
 // MARK: - AuthUseCase
 
 public protocol AuthUseCase {
+    var isUserLoggedIn: Bool { get }
+
+    func logout(completion: @escaping UICompletionResult<Void>)
+
     func authWithGoogleAccount(instance: UIViewController?, completion: @escaping UICompletionResult<EmailUser>)
     func authWithEmailAccount(
         with data: EmailUser, screenType: AuthScreenType, completion: @escaping UICompletionResult<EmailUser>
     )
+
+    func currentUser() -> AuthUser
 }
 
 // MARK: - AuthUseCaseImpl
@@ -19,6 +25,10 @@ public class AuthUseCaseImpl: BaseUseCase {
 
     let validator: Validator
 
+    public var isUserLoggedIn: Bool {
+        return firebaseAuthRequestService.currentUser != nil
+    }
+
     init(
         firebaseAuthRequestService: FirebaseAuthRequestService,
         firebaseUserStorageService: FirebaseUserStorageService,
@@ -27,8 +37,6 @@ public class AuthUseCaseImpl: BaseUseCase {
         self.firebaseAuthRequestService = firebaseAuthRequestService
         self.firebaseUserStorageService = firebaseUserStorageService
         self.validator = validator
-
-        firebaseUserStorageService.self
     }
 
     private func validateUserData(with user: EmailUser, screenType: AuthScreenType) -> UIResult<Void> {
@@ -60,6 +68,19 @@ public class AuthUseCaseImpl: BaseUseCase {
 // MARK: - AuthUseCase
 
 extension AuthUseCaseImpl: AuthUseCase {
+    public func currentUser() -> AuthUser {
+        let currentUser = firebaseAuthRequestService.currentUser
+        return AuthUser(
+            imageUrl: currentUser?.photoURL,
+            diaplayName: currentUser?.displayName,
+            email: currentUser?.email
+        )
+    }
+
+    public func logout(completion: @escaping UICompletionResult<Void>) {
+        self.firebaseAuthRequestService.signOut(completion: completion)
+    }
+
     public func authWithEmailAccount(with data: EmailUser, screenType: AuthScreenType, completion: @escaping UICompletionResult<EmailUser>) {
         switch validateUserData(with: data, screenType: screenType) {
         case .value:

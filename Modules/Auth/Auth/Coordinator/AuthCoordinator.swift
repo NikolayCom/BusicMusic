@@ -1,6 +1,7 @@
 import Core
 import Common
 import Models
+import HomeBox
 
 final class AuthCoordinator: BaseCoordinator {
     private weak var assembly: AuthAssembly?
@@ -12,16 +13,16 @@ final class AuthCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        guard let splash = assembly?.makeOnBoarding(output: self) else { return }
+        guard let splash = assembly?.makeSplash(output: self) else { return }
         navigationController.setViewControllers([splash], animated: true)
     }
 
-    func showMain() {
+    func showHomeBox() {
         guard
-            let mainCoordinator = assembly?.makeMainAssembly(nvc: navigationController).coordinator()
+            let homeBoxCoordinator = assembly?.makeHomeBoxAssembly(nvc: navigationController).coordinator()
         else { return }
-        add(child: mainCoordinator)
-        mainCoordinator.start()
+        add(child: homeBoxCoordinator)
+        homeBoxCoordinator.start()
     }
 
     private func removeChilds() {
@@ -33,7 +34,12 @@ final class AuthCoordinator: BaseCoordinator {
 
 // MARK: SplashOutputInterface
 
-extension AuthCoordinator: SplashOutputInterface {}
+extension AuthCoordinator: SplashOutputInterface {
+    func showOnBoarding() {
+        guard let splash = assembly?.makeOnBoarding(output: self) else { return }
+        navigationController.setViewControllers([splash], animated: true)
+    }
+}
 
 // MARK: OnBoardingOutputInterface
 

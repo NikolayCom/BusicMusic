@@ -8,12 +8,14 @@ import Extensions
 // MARK: - FirebaseAuthRequestService
 
 protocol FirebaseAuthRequestService {
+    var currentUser: User?{ get }
+
     func authWithGoogleAccount(with presentedView: UIViewController, completion: @escaping UICompletionResult<EmailUser>)
     func authWithFacebookAccount(completion: @escaping UICompletionResult<Void>)
 
     func authWithEmailAccount(data: EmailUser, authType: AuthScreenType, completion: @escaping UICompletionResult<Void>)
 
-    func signOut()
+    func signOut(completion: @escaping UICompletionResult<Void>)
 }
 
 // MARK: - FirebaseAuthRequestServiceImpl
@@ -24,6 +26,10 @@ final class FirebaseAuthRequestServiceImpl: BackgroundWorker {
     private lazy var googleSignIn: GIDSignIn = GIDSignIn.sharedInstance.then {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         $0.configuration = GIDConfiguration(clientID: clientID)
+    }
+
+    var currentUser: User? {
+        authorization.currentUser
     }
 
     override init() {
@@ -69,10 +75,13 @@ extension FirebaseAuthRequestServiceImpl: FirebaseAuthRequestService {
         self.signInWithGoogle(controller: presentedView, completion: completion)
     }
 
-    func signOut() {
+    func signOut(completion: @escaping UICompletionResult<Void>) {
         do {
             try authorization.signOut()
+            completion(.value(()))
+
         } catch let signOutError as NSError {
+            completion(.error(.validation(message: "Error signing out")))
             print("Error signing out: %@", signOutError)
         }
     }
@@ -126,6 +135,7 @@ extension FirebaseAuthRequestServiceImpl {
     private func signInWithGoogle(controller: UIViewController, completion: @escaping UICompletionResult<EmailUser>) {
         self.googleSignIn.signIn(withPresenting: controller) { [unowned self] result, error in
             guard error == nil else {
+                completion(.error(.auth))
                 return print("Completed with error: \(error?.localizedDescription)")
             }
 

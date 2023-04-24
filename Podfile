@@ -20,6 +20,10 @@ def external_pods
 # Notifications
   pod 'NotificationBannerSwift', '~> 3.0.0'
 
+# Initial animation
+  pod 'lottie-ios'
+  pod 'Pulsator'
+
 # Firebase
   pod 'Firebase'
   pod 'Firebase/Auth'
@@ -50,6 +54,8 @@ def developmet_pods
   pod "Models", :path => "./Modules/Models"
   pod "Common", :path => "./Modules/Common"
   pod "Main", :path => "./Modules/Main"
+  pod "HomeBox", :path => "./Modules/HomeBox"
+  pod "Profile", :path => "./Modules/Profile"
 end
 
 # Targerts

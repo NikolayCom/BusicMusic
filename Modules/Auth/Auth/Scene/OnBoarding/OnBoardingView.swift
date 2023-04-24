@@ -37,7 +37,7 @@ class OnBoardingView: BaseView<OnBoardingViewModelInterface> {
         $0.spacing = grid.space24
     }
 
-    private lazy var registerButton = MainButton(type: .continue).then {
+    private lazy var registerButton = MainButton(type: .continue, style: .dark).then {
         $0.setTitle(data.registerButtonTitle, for: .normal)
         $0.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
     }

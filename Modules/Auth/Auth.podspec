@@ -21,4 +21,5 @@ Pod::Spec.new do |spec|
   spec.dependency "Resources"
   spec.dependency "Models"
   spec.dependency "Main"
+  spec.dependency "HomeBox"
 end

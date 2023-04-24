@@ -32,6 +32,7 @@ public class ActivityIndicator: UIView {
 
     private func setupUI() {
         self.backgroundColor = appearance.backgroundColor
+        indicator.color = appearance.whiteColor
 
         addSubview(self.indicator)
     }

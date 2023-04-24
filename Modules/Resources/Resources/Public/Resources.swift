@@ -7,6 +7,7 @@ public enum Resources {
 
     public static var strings: S.Type { S.self }
     public static var images: A.AuthImages.Type { A.AuthImages.self }
+    public static var homeImages: A.HomeImages.Type { A.HomeImages.self }
     public static var colors: A.Colors.Type { A.Colors.self }
 
 

@@ -2,6 +2,9 @@
 
 "common.or" = "OR";
 "common.error" = "Error";
+"common.cancel" = "Cancel";
+"common.ok" = "Ok";
+"common.add" = "Add";
 
 // MARK: - Auth
 
@@ -35,3 +38,13 @@
 "auth.error.incorrectName" = "Incorrect name data.";
 "auth.error.empty" = "Please fill this data.";
 
+// MARK: Shazam
+
+"shazam.main.title" = "Tap to Shazam";
+"shazam.main.infoTitle" = "Listening for music..";
+"shazam.main.infoSubtitle" = "Make sure device can hear the song clearly";
+
+// MARK: Profile
+
+"profile.main.title" = "Profile";
+"profile.main.logout" = "Log Out";

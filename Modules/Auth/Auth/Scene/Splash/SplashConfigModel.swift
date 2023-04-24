@@ -7,7 +7,10 @@ protocol SplashInputInterface: BaseInputInterface {}
 
 // MARK: - SplashOutputInterface
 
-protocol SplashOutputInterface: BaseOutputInterface {}
+protocol SplashOutputInterface: BaseOutputInterface {
+    func showOnBoarding()
+    func showHomeBox()
+}
 
 // MARK: - SplashDependency
 

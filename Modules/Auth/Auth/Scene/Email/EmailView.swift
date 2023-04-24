@@ -34,7 +34,7 @@ public protocol EmailViewInterface: BaseViewInterface {
 // MARK: - EmailView
 
 public class EmailView: BaseView<EmailViewModelInterface> {
-    private lazy var actionButton = MainButton(type: .continue).then {
+    private lazy var actionButton = MainButton(type: .continue, style: .dark).then {
         $0.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
     }
 
