@@ -2,6 +2,7 @@ import Core
 import UseCases
 import Common
 import Models
+import Profile
 
 // MARK: - AuthAssembly
 
@@ -12,13 +13,15 @@ public protocol HomeBoxAssembly: BaseAssembly {
     func makeShazam(output: ShazamOutputInterface?) -> ShazamViewController
 
     func makeShazam(nvc: UINavigationController) -> WidgetCoordinator
+    func makeProfile() -> ProfileCoordinator
 }
 
 // MARK: - AppAssemblyImpl
 
 public final class HomeBoxAssemblyImpl: BaseAssembly {
     public let rootAssembly: RootAssembly
-    let appDependency: AppDependency
+
+    private let appDependency: AppDependency
 
     public init(
         navigationController: UINavigationController,
@@ -42,6 +45,13 @@ public final class HomeBoxAssemblyImpl: BaseAssembly {
 // MARK: - HomeBoxAssembly
 
 extension HomeBoxAssemblyImpl: HomeBoxAssembly {
+    public func makeProfile() -> ProfileCoordinator {
+        ProfileAssemblyImpl(
+            rootAssembly: rootAssembly,
+            appDependency: appDependency
+        ).coordinator() as! ProfileCoordinator
+    }
+
     public func makeShazam(nvc: UINavigationController) -> WidgetCoordinator {
         ShazamAssemblyImpl(
             navigationController: nvc,

@@ -13,7 +13,7 @@ final class AuthCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        guard let splash = assembly?.makeOnBoarding(output: self) else { return }
+        guard let splash = assembly?.makeSplash(output: self) else { return }
         navigationController.setViewControllers([splash], animated: true)
     }
 
@@ -34,7 +34,12 @@ final class AuthCoordinator: BaseCoordinator {
 
 // MARK: SplashOutputInterface
 
-extension AuthCoordinator: SplashOutputInterface {}
+extension AuthCoordinator: SplashOutputInterface {
+    func showOnBoarding() {
+        guard let splash = assembly?.makeOnBoarding(output: self) else { return }
+        navigationController.setViewControllers([splash], animated: true)
+    }
+}
 
 // MARK: OnBoardingOutputInterface
 

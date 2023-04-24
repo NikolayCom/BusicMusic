@@ -55,6 +55,7 @@ def developmet_pods
   pod "Common", :path => "./Modules/Common"
   pod "Main", :path => "./Modules/Main"
   pod "HomeBox", :path => "./Modules/HomeBox"
+  pod "Profile", :path => "./Modules/Profile"
 end
 
 # Targerts

@@ -41,4 +41,15 @@ extension ShazamCoordinator: ShazamOutputInterface {
 }
 
 // MARK: ShazamSearchOutputInterface
-extension ShazamCoordinator: ShazamSearchOutputInterface {}
+extension ShazamCoordinator: ShazamSearchOutputInterface {
+    func showAddSong() {
+        guard let addSong = assembly?.makeAddSong(output: self) else { return }
+        assembly?.navigationController.present(addSong, animated: true)
+    }
+}
+
+extension ShazamCoordinator: AddSongOutputInterface {
+    func dismissScreen() {
+        assembly?.navigationController.topViewController?.dismiss(animated: true)
+    }
+}

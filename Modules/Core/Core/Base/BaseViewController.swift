@@ -40,6 +40,19 @@ public enum UIBarButtonItemSide {
     case right
 }
 
+// MARK: - UIBarButtonItemType
+
+public enum UIBarButtonItemType {
+    case profile
+
+    var image: UIImage? {
+        switch self {
+        case .profile:
+            return UIImage(systemName: "person.crop.circle")
+        }
+    }
+}
+
 // MARK: - BaseViewController
 
 open class BaseViewController<View, ViewModel>: UIViewController {
@@ -180,6 +193,22 @@ open class BaseViewController<View, ViewModel>: UIViewController {
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.compactAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+    }
+
+    public func setNavigationBarButtonItem(
+        to side: UIBarButtonItemSide,
+        type: UIBarButtonItemType,
+        action: Selector
+    ) {
+        let item = UIBarButtonItem(image: type.image, style: .bordered, target: self, action: action)
+
+        switch side {
+        case .left:
+            navigationItem.leftBarButtonItem = item
+
+        case .right:
+            navigationItem.rightBarButtonItem = item
+        }
     }
 
     // MARK: - Actions

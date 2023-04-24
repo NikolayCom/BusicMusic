@@ -50,7 +50,7 @@ final class SignInUpView: BaseView<SignInUpViewModelInterface> {
         $0.spacing = grid.space10
     }
 
-    private lazy var appleButton = MainButton(type: .apple).then {
+    private lazy var appleButton = MainButton(type: .apple, style: .dark).then {
         $0.setTitle(data.appleButtonTitle, for: .normal)
         $0.addTarget(self, action: #selector(appleButtonDidTap), for: .touchUpInside)
     }

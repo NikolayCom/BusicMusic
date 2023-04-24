@@ -13,7 +13,8 @@ private extension AppearanceConstants {
 public class MainButton: UIButton {
     // MARK: Private properties
 
-    private var type: MainButtonType
+    private let type: MainButtonType
+    private let style: MainButtonStyle
 
     private lazy var contentView = MainButtonContentView()
 
@@ -31,8 +32,9 @@ public class MainButton: UIButton {
 
     // MARK: Init
 
-    public init(type: MainButtonType) {
+    public init(type: MainButtonType, style: MainButtonStyle) {
         self.type = type
+        self.style = style
 
         super.init(frame: .zero)
 
@@ -45,7 +47,7 @@ public class MainButton: UIButton {
     }
 
     override public func setTitle(_ title: String?, for state: UIControl.State) {
-        self.contentView.configure(with: title, buttonType: type)
+        self.contentView.configure(with: title, buttonType: type, style: style)
 
     }
 
@@ -64,9 +66,10 @@ public class MainButton: UIButton {
     }
 
     private func configure() {
-        backgroundColor = appearance.blackColor
+        backgroundColor = style.colors.background
         clipsToBounds = true
         layer.cornerRadius = appearance.cornerRadius
+        layer.borderWidth = grid.space2
 
         setContentCompressionResistancePriority(.required, for: .vertical)
     }

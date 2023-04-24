@@ -11,6 +11,17 @@ public final class HomeBoxViewController: BaseViewController<
     HomeBoxViewModelInterface
 > {
 
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
+        .darkContent
+    }
+
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        setNavigationBarButtonItem(to: .right, type: .profile, action: #selector(rightAction))
+    }
+
     public override func setup() {
         super.setup()
 
@@ -23,6 +34,13 @@ public final class HomeBoxViewController: BaseViewController<
 
         assert(childController is (any WidgetCellController), "Controller must implement WidgetCellController")
         viewModel.addCellController(with: childController as! (any WidgetCellController))
+    }
+
+    // MARK: Actions
+
+    @objc
+    private func rightAction() {
+        viewModel.showProfile()
     }
 }
 

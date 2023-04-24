@@ -19,8 +19,6 @@ final class SignInUpViewModel: BaseViewModel<
         super.viewLoaded()
         
         self.configure()
-
-        self.config.output?.showHomeBox()
     }
 
     private func configure() {

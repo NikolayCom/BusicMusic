@@ -4,6 +4,7 @@
 "common.error" = "Error";
 "common.cancel" = "Cancel";
 "common.ok" = "Ok";
+"common.add" = "Add";
 
 // MARK: - Auth
 
@@ -42,3 +43,8 @@
 "shazam.main.title" = "Tap to Shazam";
 "shazam.main.infoTitle" = "Listening for music..";
 "shazam.main.infoSubtitle" = "Make sure device can hear the song clearly";
+
+// MARK: Profile
+
+"profile.main.title" = "Profile";
+"profile.main.logout" = "Log Out";

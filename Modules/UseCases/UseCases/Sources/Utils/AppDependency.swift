@@ -4,12 +4,17 @@ public protocol HasAuthUseCase {
     var authUseCase: AuthUseCase { get }
 }
 
+public protocol HasShazamUseCase {
+    var shazamUseCase: ShazamUseCase { get }
+}
+
 // MARK: AppDependency
 
-public protocol AppDependency: HasAuthUseCase {}
+public protocol AppDependency: HasAuthUseCase, HasShazamUseCase {}
 
 // MARK: Impl
 
+@available(iOS 15.0, *)
 public class AppDependencyImpl {
     private let requestsAssembly: RequestsAssembly
     private let commonAssembly: CommonAssembly
@@ -19,6 +24,8 @@ public class AppDependencyImpl {
         firebaseUserStorageService: requestsAssembly.firebaseUserStorageService,
         validator: commonAssembly.validator
     )
+
+    public lazy var shazamUseCase: ShazamUseCase = ShazamUseCaseImpl()
 
     private init(requestsAssembly: RequestsAssembly, commonAssembly: CommonAssembly) {
         self.requestsAssembly = requestsAssembly
@@ -35,4 +42,5 @@ public class AppDependencyImpl {
 
 // MARK: - AppDependencyImpl + AppDependency
 
+@available(iOS 15.0, *)
 extension AppDependencyImpl: AppDependency {}

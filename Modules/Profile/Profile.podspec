@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
-  spec.name         = "HomeBox"
+  spec.name         = "Profile"
   spec.version      = "0.0.1"
-  spec.summary      = "HomeBox"
+  spec.summary      = "Profile"
   spec.description  = <<-DESC
   Design module
                    DESC
@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.platform     = :ios, "14.0"
   spec.swift_version = "5.6.1"
   spec.source       = { :path => "." }
-  spec.source_files  = "HomeBox/**/*.{h,m,swift}"
+  spec.source_files  = "Profile/**/*.{h,m,swift}"
 
   spec.frameworks = "Foundation"
 
@@ -20,8 +20,4 @@ Pod::Spec.new do |spec|
   spec.dependency "UseCases"
   spec.dependency "Resources"
   spec.dependency "Models"
-  spec.dependency "Profile"
-
-  spec.dependency "lottie-ios"
-  spec.dependency "Pulsator"
 end

@@ -6,6 +6,7 @@ public protocol HomeBoxViewModelInterface: BaseViewModelInterface {
     var collectionData: [CollectionData] { get }
 
     func addCellController(with controller: any WidgetCellController)
+    func showProfile()
 }
 
 // MARK: - HomeBoxViewModel
@@ -34,6 +35,10 @@ public final class HomeBoxViewModel: BaseViewModel<
 
 // MARK: - HomeBoxViewModel
 extension HomeBoxViewModel: HomeBoxViewModelInterface {
+    public func showProfile() {
+        self.config.output?.showProfile()
+    }
+
     public func addCellController(with controller: any WidgetCellController) {
         childControllers.append(controller)
         view.reloadData()

@@ -13,7 +13,9 @@ public protocol HomeBoxInputInterface: BaseInputInterface {}
 
 // MARK: - DefaultOutputInterface
 
-public protocol HomeBoxOutputInterface: BaseOutputInterface {}
+public protocol HomeBoxOutputInterface: BaseOutputInterface {
+    func showProfile()
+}
 
 // MARK: - DefaultDependency
 

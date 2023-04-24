@@ -9,6 +9,7 @@ import HomeBox
 
 protocol AuthAssembly: BaseAssembly {
     var rootAssembly: RootAssembly { get }
+    var appDependency: AppDependency { get }
 
     func makeMainAssembly(nvc: UINavigationController) -> MainAssembly
     func makeHomeBoxAssembly(nvc: UINavigationController) -> HomeBoxAssembly

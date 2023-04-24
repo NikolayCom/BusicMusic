@@ -46,4 +46,10 @@ private extension HomeBoxCoordinator {
 }
 
 // MARK: HomeBoxOutputInterface
-extension HomeBoxCoordinator: HomeBoxOutputInterface {}
+extension HomeBoxCoordinator: HomeBoxOutputInterface {
+    func showProfile() {
+        guard let profileCoordinator = assembly?.makeProfile() else { return }
+        add(child: profileCoordinator)
+        profileCoordinator.start()
+    }
+}

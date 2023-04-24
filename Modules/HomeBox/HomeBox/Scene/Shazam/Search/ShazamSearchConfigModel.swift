@@ -7,11 +7,13 @@ public protocol ShazamSearchInputInterface: BaseInputInterface {}
 
 // MARK: - ShazamSearchOutputInterface
 
-public protocol ShazamSearchOutputInterface: BaseOutputInterface {}
+public protocol ShazamSearchOutputInterface: BaseOutputInterface {
+    func showAddSong()
+}
 
 // MARK: - ShazamSearchDependency
 
-public typealias ShazamSearchDependency = HasAuthUseCase
+public typealias ShazamSearchDependency = HasShazamUseCase
 
 // MARK: - ShazamSearchConfigModel
 

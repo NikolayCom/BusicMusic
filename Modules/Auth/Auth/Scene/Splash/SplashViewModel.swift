@@ -11,10 +11,21 @@ final class SplashViewModel: BaseViewModel<
     SplashViewInterface,
     SplashConfigModel
 > {
+
+    override func viewAppeared() {
+        super.viewAppeared()
+
+        guard let dependency = self.config.dependency else { return }
+
+        if dependency.authUseCase.isUserLoggedIn {
+            self.config.output?.showHomeBox()
+        } else {
+            self.config.output?.showOnBoarding()
+        }
+    }
+
     override func viewLoaded() {
         super.viewLoaded()
-
-        self.config.dependency?.authUseCase
     }
 }
 

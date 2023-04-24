@@ -20,12 +20,11 @@ class MainButtonContentView: UIView {
 
     private lazy var buttonLabel = UILabel().then {
         $0.font = appearance.labelFont
-        $0.textColor = appearance.whiteColor
         $0.textAlignment = .center
     }
 
     private lazy var buttonIconImageView = UIImageView().then {
-        $0.tintColor = appearance.whiteColor
+        // $0.tintColor = appearance.whiteColor
         $0.contentMode = .right
     }
 
@@ -65,7 +64,8 @@ class MainButtonContentView: UIView {
         contentStackView.addArrangedSubviews(
             [
                 self.buttonIconImageView,
-                self.buttonLabel
+                self.buttonLabel,
+                UIView()
             ]
         )
 
@@ -89,8 +89,8 @@ class MainButtonContentView: UIView {
         }
     }
 
-    private func configureViews(with style: MainButtonType.Style) {
-        switch  style {
+    private func configureViews(with position: MainButtonType.Position) {
+        switch position {
         case .right:
             setupRightIcon()
 
@@ -105,10 +105,13 @@ class MainButtonContentView: UIView {
 // MARK: MainButtonContentView + configure
 
 extension MainButtonContentView {
-    func configure(with title: String?, buttonType: MainButtonType) {
+    func configure(with title: String?, buttonType: MainButtonType, style: MainButtonStyle) {
+        buttonLabel.textColor = style.colors.textColor
+
+        buttonIconImageView.image = buttonType.iconImage?.withTintColor(style.colors.textColor)
+        buttonIconImageView.tintColor = style.colors.textColor
+
         buttonLabel.text = title
         configureViews(with: buttonType.style)
-
-        buttonIconImageView.image = buttonType.iconImage?.withTintColor(appearance.whiteColor)
     }
 }
