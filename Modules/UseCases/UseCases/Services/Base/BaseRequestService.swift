@@ -17,11 +17,13 @@ public enum DBCollection: String {
     case media = "Media"
 }
 
-open class BaseRequestService {
-    // MARK: Init
+// MARK: BaseRequestService
 
-    public init() {}
+public protocol BaseRequestService {
+    func decode<Response: Codable>(ofType: Response.Type, from data: [String: Any]) -> Response?
+}
 
+public extension BaseRequestService {
     public func decode<Response: Codable>(ofType: Response.Type, from data: [String: Any]) -> Response? {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data)
