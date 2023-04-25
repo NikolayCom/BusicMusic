@@ -17,17 +17,6 @@ public final class HomeBoxViewModel: BaseViewModel<
 > {
     public var collectionData: [CollectionData] = []
 
-    private var childControllers: [any WidgetCellController] = [] {
-        willSet {
-            collectionData = newValue.map {
-                CollectionData(
-                    section: nil,
-                    rows: [HomeBoxCollectionCellModel(controller: $0, shape: $0.shape)]
-                )
-            }
-        }
-    }
-
     public override func viewLoaded() {
         super.viewLoaded()
     }
@@ -40,7 +29,17 @@ extension HomeBoxViewModel: HomeBoxViewModelInterface {
     }
 
     public func addCellController(with controller: any WidgetCellController) {
-        childControllers.append(controller)
+        collectionData.append(
+            CollectionData(
+                section: HomeBoxHeaderCollectionSectionModel(title: controller.sectionTitle),
+                rows: [
+                    HomeBoxCollectionCellModel(
+                        controller: controller, shape: controller.shape
+                    )
+                ]
+            )
+        )
+
         view.reloadData()
     }
 }

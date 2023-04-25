@@ -39,8 +39,8 @@ private extension HomeBoxCoordinator {
         case .shazam:
             return assembly?.makeShazam(nvc: navigationController)
 
-        case .myLibrary:
-            return nil
+        case .mediaLibrary:
+            return assembly?.makeMediaLibrary(nvc: navigationController)
         }
     }
 }

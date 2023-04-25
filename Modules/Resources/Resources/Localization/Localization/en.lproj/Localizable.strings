@@ -38,6 +38,11 @@
 "auth.error.incorrectName" = "Incorrect name data.";
 "auth.error.empty" = "Please fill this data.";
 
+// MARK: HomeBox
+
+"homeBox.shazam.desc" = "Search Music";
+"homeBox.myLibrary.desc" = "My Library";
+
 // MARK: Shazam
 
 "shazam.main.title" = "Tap to Shazam";

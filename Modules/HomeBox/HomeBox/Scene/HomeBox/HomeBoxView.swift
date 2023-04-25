@@ -24,6 +24,7 @@ public class HomeBoxView: BaseView<HomeBoxViewModelInterface> {
         $0.dataSource = self
         $0.backgroundColor = .clear
         $0.register(class: HomeBoxCollectionViewCell.self)
+        $0.register(supplementaryClass: HomeBoxHeaderCollectionSectionView.self, kind: UICollectionView.elementKindSectionHeader)
         $0.setCollectionViewLayout(self.getCollectionLayout(), animated: true)
     }
 
@@ -31,8 +32,6 @@ public class HomeBoxView: BaseView<HomeBoxViewModelInterface> {
 
     public override func setup() {
         super.setup()
-
-        //backgroundColor = appearance.blackColor
     }
 
     public override func setupUI() {
@@ -80,8 +79,12 @@ extension HomeBoxView: HomeBoxViewInterface {
 
 // MARK: UICollectionViewDataSource
 extension HomeBoxView: UICollectionViewDataSource {
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
         viewModel.collectionData.count
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.collectionData[section].rows.count
     }
 
     public func collectionView(
@@ -91,5 +94,17 @@ extension HomeBoxView: UICollectionViewDataSource {
         viewModel.collectionData[indexPath.section].rows[indexPath.row].configure(
             collectionView: collectionView, for: indexPath
         )
+    }
+
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        viewModel.collectionData[indexPath.section].section?.configure(
+            collectionView: collectionView,
+            indexPath: indexPath,
+            kind: kind
+        ) ?? UICollectionReusableView()
     }
 }

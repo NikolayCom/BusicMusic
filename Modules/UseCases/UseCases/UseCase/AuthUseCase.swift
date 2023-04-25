@@ -15,6 +15,8 @@ public protocol AuthUseCase {
     )
 
     func currentUser() -> AuthUser
+
+    func fetchMedia(completion: @escaping UICompletionResult<[ShazamMedia]>)
 }
 
 // MARK: - AuthUseCaseImpl
@@ -68,6 +70,15 @@ public class AuthUseCaseImpl: BaseUseCase {
 // MARK: - AuthUseCase
 
 extension AuthUseCaseImpl: AuthUseCase {
+    public func fetchMedia(completion: @escaping UICompletionResult<[ShazamMedia]>) {
+        let request: [DBRequest] = [
+            .init(collection: .users, documentId: "UAT13PpdyXDp2OwB1Rc6"), // "gXO0Z6UAE74xx6wD8JCu"
+            .init(collection: .media, documentId: "gXO0Z6UAE74xx6wD8JCu")
+        ]
+
+        firebaseUserStorageService.getDBData(with: request, completion: completion)
+    }
+
     public func currentUser() -> AuthUser {
         let currentUser = firebaseAuthRequestService.currentUser
         return AuthUser(

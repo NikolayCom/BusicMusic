@@ -16,4 +16,5 @@ Pod::Spec.new do |spec|
 
   spec.dependency "Then"
   spec.dependency "SnapKit"
+  spec.dependency "Constants"
 end

@@ -9,4 +9,6 @@ public enum WidgetShapeType {
 // MARK: WidgetCellController
 public protocol WidgetCellController: UIViewController, BaseViewControllerInterface {
     var shape: WidgetShapeType { get }
+
+    var sectionTitle: String { get }
 }

@@ -3,8 +3,8 @@ import UseCases
 
 // MARK: - HomeBoxWidgets
 enum HomeBoxWidget: CaseIterable, Equatable {
+    case mediaLibrary
     case shazam
-    case myLibrary
 }
 
 // MARK: - HomeBoxInputInterface

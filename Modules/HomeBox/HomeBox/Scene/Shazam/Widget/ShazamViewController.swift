@@ -1,8 +1,13 @@
 import Core
 import Constants
+import Resources
 
 private extension GridConstants {
     var cellHeight: CGFloat { 170 }
+}
+
+private extension DataConstants {
+    var title: String { Resources.strings.HomeBox.Shazam.desc }
 }
 
 // MARK: - ShazamViewControllerInterface
@@ -16,6 +21,7 @@ public final class ShazamViewController: BaseViewController<
     ShazamViewModelInterface
 > {
     public lazy var shape: WidgetShapeType = .fixedSize(grid.cellHeight)
+    public lazy var sectionTitle: String = data.title
 
     public override func setup() {
         super.setup()

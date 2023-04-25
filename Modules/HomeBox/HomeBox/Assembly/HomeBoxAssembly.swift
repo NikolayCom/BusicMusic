@@ -10,9 +10,10 @@ public protocol HomeBoxAssembly: BaseAssembly {
     var rootAssembly: RootAssembly { get }
 
     func makeHomeBox(output: HomeBoxOutputInterface?) -> HomeBoxViewController
-    func makeShazam(output: ShazamOutputInterface?) -> ShazamViewController
 
     func makeShazam(nvc: UINavigationController) -> WidgetCoordinator
+    func makeMediaLibrary(nvc: UINavigationController) -> WidgetCoordinator
+
     func makeProfile() -> ProfileCoordinator
 }
 
@@ -52,20 +53,18 @@ extension HomeBoxAssemblyImpl: HomeBoxAssembly {
         ).coordinator() as! ProfileCoordinator
     }
 
-    public func makeShazam(nvc: UINavigationController) -> WidgetCoordinator {
-        ShazamAssemblyImpl(
+    public func makeMediaLibrary(nvc: UINavigationController) -> WidgetCoordinator {
+        MediaLibraryAssemblyImpl(
             navigationController: nvc,
             appDependency: appDependency
         ).coordinator() as! WidgetCoordinator
     }
 
-    public func makeShazam(output: ShazamOutputInterface?) -> ShazamViewController {
-        ShazamSceneAssembly(
-            config: ShazamConfigModel(
-                output: output,
-                dependency: appDependency
-            )
-        ).controller as! ShazamViewController
+    public func makeShazam(nvc: UINavigationController) -> WidgetCoordinator {
+        ShazamAssemblyImpl(
+            navigationController: nvc,
+            appDependency: appDependency
+        ).coordinator() as! WidgetCoordinator
     }
 
     public func makeHomeBox(output: HomeBoxOutputInterface?) -> HomeBoxViewController {

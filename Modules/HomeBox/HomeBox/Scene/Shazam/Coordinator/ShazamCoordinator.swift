@@ -12,8 +12,7 @@ final class ShazamCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        guard let shazamWidget = assembly?.makeShazam(output: self) else { return }
-        navigationController.pushViewController(shazamWidget, animated: true)
+        showShazamView()
     }
 
     private func removeChilds() {
