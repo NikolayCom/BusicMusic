@@ -72,8 +72,8 @@ public class AuthUseCaseImpl: BaseUseCase {
 extension AuthUseCaseImpl: AuthUseCase {
     public func fetchMedia(completion: @escaping UICompletionResult<[ShazamMedia]>) {
         let request: [DBRequest] = [
-            .init(collection: .users, documentId: "UAT13PpdyXDp2OwB1Rc6"), // "gXO0Z6UAE74xx6wD8JCu"
-            .init(collection: .media, documentId: "gXO0Z6UAE74xx6wD8JCu")
+            .init(collection: .users, documentId: "UAT13PpdyXDp2OwB1Rc6"),
+            .init(collection: .media, documentId: nil)
         ]
 
         firebaseUserStorageService.getDBData(with: request, completion: completion)

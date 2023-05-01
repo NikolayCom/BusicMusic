@@ -14,6 +14,10 @@ public struct Configuration {
     public let appBundle: String
     public let appName: String
 
+    public var baseUrl: String {
+        "https://musicbrainz.org/ws/2"
+    }
+
     public var isDebug: Bool {
         #if DEBUG
             return true

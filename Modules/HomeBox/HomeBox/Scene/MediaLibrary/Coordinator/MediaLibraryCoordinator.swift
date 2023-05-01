@@ -40,4 +40,10 @@ extension MediaLibraryCoordinator: MediaLibraryWidgetOutputInterface {
 }
 
 // MARK: MediaLibraryOutputInterface
-extension MediaLibraryCoordinator: MediaLibraryOutputInterface {}
+extension MediaLibraryCoordinator: MediaLibraryOutputInterface {
+    func showPlayer() {
+        guard let player = assembly?.makePlayer() else { return }
+        add(child: player)
+        player.start()
+    }
+}

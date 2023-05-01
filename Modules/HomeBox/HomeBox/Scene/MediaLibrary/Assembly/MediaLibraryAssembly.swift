@@ -3,6 +3,7 @@ import UseCases
 import Common
 import Models
 import UIComponents
+import Player
 
 // MARK: - MediaLibraryAssembly
 
@@ -17,6 +18,8 @@ public protocol MediaLibraryAssembly: BaseAssembly {
     func makeMediaLibrary(
         output: MediaLibraryOutputInterface?
     ) -> MediaLibraryViewController
+
+    func makePlayer() -> PlayerCoordinator
 }
 
 // MARK: - MediaLibraryAssemblyImpl
@@ -51,6 +54,14 @@ public final class MediaLibraryAssemblyImpl: BaseAssembly {
 // MARK: - MediaLibraryAssembly
 
 extension MediaLibraryAssemblyImpl: MediaLibraryAssembly {
+    public func makePlayer() -> PlayerCoordinator {
+        PlayerAssemblyImpl(
+            navigationController: navigationController,
+            rootAssembly: rootAssembly,
+            appDependency: appDependency
+        ).coordinator() as! PlayerCoordinator
+    }
+
     public func makeMediaLibrary(
         output: MediaLibraryOutputInterface?
     ) -> MediaLibraryViewController {

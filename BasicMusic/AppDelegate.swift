@@ -8,6 +8,7 @@
 import UIKit
 import Core
 import IQKeyboardManagerSwift
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         self.configKeyboard()
+        self.configurePlayer()
 
         return true
     }
@@ -40,6 +42,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func configKeyboard() {
         IQKeyboardManager.shared.enable = true
+    }
+
+    private func configurePlayer() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do
+        {
+            try audioSession.setCategory(AVAudioSession.Category.playback , mode:  AVAudioSession.Mode.default)
+
+        } catch let error as NSError {
+            print("playback failed : \(error)")
+        }
     }
 }
 

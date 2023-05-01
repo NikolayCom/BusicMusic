@@ -8,9 +8,13 @@ public protocol HasShazamUseCase {
     var shazamUseCase: ShazamUseCase { get }
 }
 
+public protocol HasPlayerUseCase {
+    var playerUseCase: PlayerUseCase { get }
+}
+
 // MARK: AppDependency
 
-public protocol AppDependency: HasAuthUseCase, HasShazamUseCase {}
+public protocol AppDependency: HasAuthUseCase, HasShazamUseCase, HasPlayerUseCase {}
 
 // MARK: Impl
 
@@ -26,6 +30,10 @@ public class AppDependencyImpl {
     )
 
     public lazy var shazamUseCase: ShazamUseCase = ShazamUseCaseImpl()
+
+    public lazy var playerUseCase: PlayerUseCase = PlayerUseCaseImpl(
+        musicRequestService: requestsAssembly.musicRequestService
+    )
 
     private init(requestsAssembly: RequestsAssembly, commonAssembly: CommonAssembly) {
         self.requestsAssembly = requestsAssembly

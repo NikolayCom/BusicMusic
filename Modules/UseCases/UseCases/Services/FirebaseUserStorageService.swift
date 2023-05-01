@@ -15,7 +15,7 @@ protocol FirebaseUserStorageService {
 
 // MARK: - FirebaseUserStorageServiceImpl
 
-class FirebaseUserStorageServiceImpl: BackgroundWorker, BaseRequestService {
+class FirebaseUserStorageServiceImpl: BackgroundWorker, BaseFirebaseRequestService {
     private typealias DBData = [String: Any]
 
     private let database = Firestore.firestore()
@@ -37,11 +37,10 @@ private extension FirebaseUserStorageServiceImpl {
             references.forEach { reference in
                 dispatchGroup.enter()
                 reference.getDocument { [weak self] snapshot, error in
-                    guard let self else { return }
                     defer { dispatchGroup.leave() }
 
                     guard error == nil else {
-                        self.foregroundTask {
+                        self?.foregroundTask {
                             completion(.error(.firebaseStorage(message: error?.localizedDescription)))
                         }
                         return

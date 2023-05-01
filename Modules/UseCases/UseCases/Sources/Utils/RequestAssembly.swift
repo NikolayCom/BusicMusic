@@ -5,6 +5,8 @@ import Core
 protocol RequestsAssembly {
     var firebaseAuthRequestService: FirebaseAuthRequestService { get }
     var firebaseUserStorageService: FirebaseUserStorageService { get }
+
+    var musicRequestService: MusicRequestService { get }
 }
 
 // MARK: - RequestsAssemblyImpl
@@ -12,5 +14,7 @@ protocol RequestsAssembly {
 class RequestsAssemblyImpl: RequestsAssembly {
     lazy var firebaseAuthRequestService: FirebaseAuthRequestService = FirebaseAuthRequestServiceImpl()
     lazy var firebaseUserStorageService: FirebaseUserStorageService = FirebaseUserStorageServiceImpl()
+
+    lazy var musicRequestService: MusicRequestService = MusicRequestServiceImpl()
 }
 

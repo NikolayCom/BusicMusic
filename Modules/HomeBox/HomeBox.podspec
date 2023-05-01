@@ -21,6 +21,7 @@ Pod::Spec.new do |spec|
   spec.dependency "Resources"
   spec.dependency "Models"
   spec.dependency "Profile"
+  spec.dependency "Player"
 
   spec.dependency "lottie-ios"
   spec.dependency "Pulsator"

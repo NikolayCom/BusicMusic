@@ -18,9 +18,12 @@ Pod::Spec.new do |spec|
 
   spec.dependency "Core"
   spec.dependency "Models"
+
   spec.dependency "Firebase/Core"
   spec.dependency "Firebase/Auth"
   spec.dependency "Firebase/Firestore"
   spec.dependency "Firebase/Database"
   spec.dependency "GoogleSignIn"
+
+  spec.dependency "Moya"
 end

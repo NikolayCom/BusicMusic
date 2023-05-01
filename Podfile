@@ -20,6 +20,9 @@ def external_pods
 # Notifications
   pod 'NotificationBannerSwift', '~> 3.0.0'
 
+# Requests
+  pod 'Moya', '14.0.0'
+
 # Initial animation
   pod 'lottie-ios'
   pod 'Pulsator'
@@ -56,6 +59,7 @@ def developmet_pods
   pod "Main", :path => "./Modules/Main"
   pod "HomeBox", :path => "./Modules/HomeBox"
   pod "Profile", :path => "./Modules/Profile"
+  pod "Player", :path => "./Modules/Player"
 end
 
 # Targerts
