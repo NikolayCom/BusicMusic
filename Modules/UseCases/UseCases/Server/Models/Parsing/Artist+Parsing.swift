@@ -5,6 +5,7 @@ extension Artist: Codable {
         case id
         case type
         case name
+        case score
         case gender
         case country
         case disambiguation
@@ -14,14 +15,16 @@ extension Artist: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         let id = try container.decode(String.self, forKey: CodingKeys.id)
-        let type = try container.decode(String.self, forKey: CodingKeys.type)
-        let name = try container.decode(String.self, forKey: CodingKeys.name)
-        let gender = try container.decode(String.self, forKey: CodingKeys.gender)
+        let score = try container.decode(Int.self, forKey: CodingKeys.score)
+        let type = try? container.decode(String?.self, forKey: CodingKeys.type)
+        let name = try? container.decode(String?.self, forKey: CodingKeys.name)
+        let gender = try? container.decode(String?.self, forKey: CodingKeys.gender)
         let country = try? container.decode(String?.self, forKey: CodingKeys.country)
-        let disambiguation = try container.decode(String.self, forKey: CodingKeys.disambiguation)
+        let disambiguation = try? container.decode(String?.self, forKey: CodingKeys.disambiguation)
 
         self.init(
             id: id,
+            score: score,
             type: type,
             name: name,
             gender: gender,

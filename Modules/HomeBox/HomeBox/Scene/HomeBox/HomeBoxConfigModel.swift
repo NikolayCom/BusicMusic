@@ -4,6 +4,7 @@ import UseCases
 // MARK: - HomeBoxWidgets
 enum HomeBoxWidget: CaseIterable, Equatable {
     case mediaLibrary
+    case artistInfo
     case shazam
 }
 

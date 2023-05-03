@@ -11,7 +11,7 @@ public protocol PlayerUseCase {
     var duration: TimeInterval { get }
     var currentTime: TimeInterval { get }
 
-    func getArtist(name: String, completion: @escaping UICompletionResult<Artist>)
+    func getArtists(name: String, completion: @escaping UICompletionResult<[Artist]>)
 
     func playThisSong(activeSong: String)
     func getNowPlayingInfo() -> Song
@@ -214,14 +214,13 @@ extension PlayerUseCaseImpl: PlayerUseCase {
         return .init(artistImage: artistImage ?? .init(), songTitle: songTitle, artistName: artistName)
     }
 
-    public func getArtist(name: String, completion: @escaping UICompletionResult<Artist>) {
+    public func getArtists(name: String, completion: @escaping UICompletionResult<[Artist]>) {
         self.musicRequestService?.getArtist(with: name) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
             case .value(let value):
-                guard let artist = value.artists.first else { return }
-                completion(.value(artist))
+                completion(.value(value.artists))
 
             case .error(let error):
                 completion(.error(.serverError))

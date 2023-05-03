@@ -13,6 +13,7 @@ public protocol HomeBoxAssembly: BaseAssembly {
 
     func makeShazam(nvc: UINavigationController) -> WidgetCoordinator
     func makeMediaLibrary(nvc: UINavigationController) -> WidgetCoordinator
+    func makeArtistInfo(nvc: UINavigationController) -> ArtistInfoCoordinator
 
     func makeProfile() -> ProfileCoordinator
 }
@@ -51,6 +52,13 @@ extension HomeBoxAssemblyImpl: HomeBoxAssembly {
             rootAssembly: rootAssembly,
             appDependency: appDependency
         ).coordinator() as! ProfileCoordinator
+    }
+
+    public func makeArtistInfo(nvc: UINavigationController) -> ArtistInfoCoordinator {
+        ArtistInfoAssemblyImpl(
+            navigationController: nvc,
+            appDependency: appDependency
+        ).coordinator() as! ArtistInfoCoordinator
     }
 
     public func makeMediaLibrary(nvc: UINavigationController) -> WidgetCoordinator {

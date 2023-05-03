@@ -41,6 +41,9 @@ private extension HomeBoxCoordinator {
 
         case .mediaLibrary:
             return assembly?.makeMediaLibrary(nvc: navigationController)
+
+        case .artistInfo:
+            return assembly?.makeArtistInfo(nvc: navigationController)
         }
     }
 }

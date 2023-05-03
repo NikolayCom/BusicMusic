@@ -42,6 +42,7 @@
 
 "homeBox.shazam.desc" = "Search Music";
 "homeBox.myLibrary.desc" = "My Library";
+"homeBox.artistInfo.desc" = "Search Artist";
 
 // MARK: Shazam
 
@@ -53,3 +54,7 @@
 
 "profile.main.title" = "Profile";
 "profile.main.logout" = "Log Out";
+
+// MARK: ArtistInfo
+
+"artistInfo.main.searchBar.placeholder" = "Search artist";

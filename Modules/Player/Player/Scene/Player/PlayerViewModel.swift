@@ -45,18 +45,6 @@ public final class PlayerViewModel: BaseViewModel<
         player.setUpRemoteTransparentControls()
 
     }
-
-    private func getArtist() {
-        self.config.dependency?.playerUseCase.getArtist(name: "rihanna") { [weak self] result in
-            switch result {
-            case .value(let artist):
-                print(artist.name)
-
-            case .error(let error):
-                self?.controller.showErrorBanner(with: error.message.orEmpty)
-            }
-        }
-    }
 }
 
 // MARK: - PlayerViewModel
