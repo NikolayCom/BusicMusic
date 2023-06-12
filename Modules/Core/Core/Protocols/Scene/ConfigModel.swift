@@ -7,5 +7,5 @@ public protocol ConfigModelInterface: AnyObject {
 
     var input: Input! { get set }
     var output: Output? { get set }
-    var dependency: Dependency?  { get set }
+    var dependency: Dependency? { get set }
 }

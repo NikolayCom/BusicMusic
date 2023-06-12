@@ -45,15 +45,17 @@ extension ShazamUseCaseImpl: ShazamUseCase {
             let recordingFormat = inputNode.outputFormat(forBus: .zero)
 
             inputNode.installTap(
-                onBus: .zero, bufferSize: 1024, format: recordingFormat
-            ) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+                onBus: .zero,
+                bufferSize: 1024,
+                format: recordingFormat
+            ) { (buffer: AVAudioPCMBuffer, _) in
                 self.session.matchStreamingBuffer(buffer, at: nil)
             }
 
             self.audioEngine.prepare()
             do {
                 try self.audioEngine.start()
-            } catch (let error) {
+            } catch let error as NSError {
                 assertionFailure(error.localizedDescription)
             }
 
@@ -77,7 +79,6 @@ extension ShazamUseCaseImpl: SHSessionDelegate {
                 albumArtURL: firstItem.artworkURL,
                 genres: firstItem.genres
             )
-            
             self.completion?(.value(media))
             self.completion = nil
         }

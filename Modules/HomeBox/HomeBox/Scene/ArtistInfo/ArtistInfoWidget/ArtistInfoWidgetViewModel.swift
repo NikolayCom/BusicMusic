@@ -13,7 +13,7 @@ public final class ArtistInfoWidgetViewModel: BaseViewModel<
     ArtistInfoWidgetViewInterface,
     ArtistInfoWidgetConfigModel
 > {
-    public override func viewLoaded() {
+    override public func viewLoaded() {
         super.viewLoaded()
     }
 }

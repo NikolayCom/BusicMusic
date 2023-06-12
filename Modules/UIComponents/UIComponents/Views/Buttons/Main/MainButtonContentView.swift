@@ -2,8 +2,7 @@ import Constants
 import Resources
 import Then
 
-//MARK: Constants
-
+// MARK: Constants
 private extension AppearanceConstants {
     var labelFont: UIFont { Resources.font(type: .medium, size: 18) }
 }
@@ -32,20 +31,20 @@ class MainButtonContentView: UIView {
         $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
 
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        return nil
-    }
-
     init() {
         super.init(frame: .zero)
 
         self.setup()
     }
 
-    // MARK: Setup
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: Setup
+
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        return nil
     }
 
     // MARK: Private methods
@@ -84,7 +83,7 @@ class MainButtonContentView: UIView {
             ]
         )
 
-        self.contentStackView.snp.makeConstraints{
+        self.contentStackView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(grid.space16)
         }
     }

@@ -134,7 +134,10 @@ extension BaseApiRequestService {
     }
 
     private func composeHeader(path: String, header: [String: String]?) -> [String: String] {
-        if let header = header { return header }
+        if let header = header {
+            return header
+        }
+
         var headers = [String: String]()
         headers["Content-Type"] = "application/json"
         headers["Accept"] = "application/json"

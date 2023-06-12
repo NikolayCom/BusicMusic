@@ -78,8 +78,7 @@ class RequestManager {
             task = Task.requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
         }
         if let body = body, !body.isEmpty,
-           let theJSONData = try? JSONSerialization.data(withJSONObject: body, options: [])
-        {
+           let theJSONData = try? JSONSerialization.data(withJSONObject: body, options: []) {
             task = Task.requestCompositeData(bodyData: theJSONData, urlParameters: parameters ?? [:])
         }
 
@@ -121,7 +120,6 @@ class RequestManager {
                         }
                         return
                     }
-                    
                     DispatchQueue.main.async {
                         completion(.error(error))
                     }

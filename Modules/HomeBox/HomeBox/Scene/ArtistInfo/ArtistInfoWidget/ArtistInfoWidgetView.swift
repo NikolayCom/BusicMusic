@@ -25,14 +25,14 @@ public class ArtistInfoWidgetView: BaseView<ArtistInfoWidgetViewModelInterface> 
         $0.isUserInteractionEnabled = true
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(actionButtonTapped)))
     }
-    
+
     // MARK: - Setups
 
-    public override func setup() {
+    override public func setup() {
         super.setup()
     }
 
-    public override func setupUI() {
+    override public func setupUI() {
         super.setupUI()
 
         addSubviews(
@@ -42,7 +42,7 @@ public class ArtistInfoWidgetView: BaseView<ArtistInfoWidgetViewModelInterface> 
         )
     }
 
-    public override func setupConstraints() {
+    override public func setupConstraints() {
         super.setupConstraints()
 
         imageView.snp.makeConstraints {

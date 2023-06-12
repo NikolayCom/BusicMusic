@@ -21,8 +21,8 @@ public struct EmailUser {
 
 // MARK: User setup
 
-extension EmailUser {
-    public mutating func setValue(with type: AuthRequiredDataType, value: String) {
+public extension EmailUser {
+    mutating func setValue(with type: AuthRequiredDataType, value: String) {
         switch type {
         case .firstName:
             self.firstName = value

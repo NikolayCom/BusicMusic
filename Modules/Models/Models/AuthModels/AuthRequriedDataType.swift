@@ -2,12 +2,12 @@ import Foundation
 import Resources
 
 public enum AuthRequiredDataType: String {
-    public typealias DataSection = [Self]
-
     case firstName
     case lastName
     case email
     case password
+
+    public typealias DataSection = [Self]
 
     public var keyboardConfig: (type: UIKeyboardType, isSecure: Bool) {
         switch self {

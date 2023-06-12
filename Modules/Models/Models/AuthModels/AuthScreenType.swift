@@ -19,7 +19,7 @@ public enum AuthScreenType {
 // MARK: - Auth/Reg with email screen
 
 public extension AuthScreenType {
-    public var emailButtonText: String {
+    var emailButtonText: String {
         let emailStrings = Resources.strings.Auth.Email
         switch self {
         case .login:
@@ -30,7 +30,7 @@ public extension AuthScreenType {
         }
     }
 
-    public var emailTitleSubtitle: (title: String, subtitle: String)? {
+    var emailTitleSubtitle: (title: String, subtitle: String)? {
         let emailStrings = Resources.strings.Auth.Email
         switch self {
         case .login:
@@ -41,7 +41,7 @@ public extension AuthScreenType {
         }
     }
 
-    public var emailScreenDataTypes: [AuthRequiredDataType.DataSection] {
+    var emailScreenDataTypes: [AuthRequiredDataType.DataSection] {
         switch self {
         case .login:
             return [

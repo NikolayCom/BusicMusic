@@ -48,7 +48,6 @@ public class MainButton: UIButton {
 
     override public func setTitle(_ title: String?, for state: UIControl.State) {
         self.contentView.configure(with: title, buttonType: type, style: style)
-
     }
 
     // MARK: Private methods

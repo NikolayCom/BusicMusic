@@ -72,7 +72,7 @@ public class EmailView: BaseView<EmailViewModelInterface> {
 
     // MARK: - Setups
 
-    public override func setupUI() {
+    override public func setupUI() {
         super.setupUI()
 
         self.titleStackView.addArrangedSubviews(
@@ -97,7 +97,7 @@ public class EmailView: BaseView<EmailViewModelInterface> {
         )
     }
 
-    public override func setupConstraints() {
+    override public func setupConstraints() {
         super.setupConstraints()
 
         self.mainContainer.snp.makeConstraints {
@@ -122,7 +122,8 @@ public class EmailView: BaseView<EmailViewModelInterface> {
 
     // MARK: Actions
 
-    @objc func actionButtonTapped() {
+    @objc
+    func actionButtonTapped() {
         self.viewModel.actionButtonDidTap()
     }
 }

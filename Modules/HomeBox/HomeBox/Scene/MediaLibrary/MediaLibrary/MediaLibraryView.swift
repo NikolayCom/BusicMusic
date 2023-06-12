@@ -40,7 +40,7 @@ public class MediaLibraryView: BaseView<MediaLibraryViewModelInterface> {
         $0.register(class: MediaCollectionViewCell.self)
         $0.setCollectionViewLayout(self.getCollectionLayout(), animated: true)
     }
-    
+
     // MARK: - Setups
 
     public override func setup() {
@@ -77,7 +77,7 @@ public class MediaLibraryView: BaseView<MediaLibraryViewModelInterface> {
 
 private extension MediaLibraryView {
     private func getCollectionLayout() -> UICollectionViewCompositionalLayout {
-        UICollectionViewCompositionalLayout { [weak self] _, layoutEnvironment in
+        UICollectionViewCompositionalLayout { _, layoutEnvironment in
             return .verticalListSection(layoutEnvironment: layoutEnvironment)
         }
     }

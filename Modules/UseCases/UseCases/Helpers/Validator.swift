@@ -39,4 +39,3 @@ public class ValidatorImpl: Validator {
         return nameRegex.matches(text) && !whiteSpacingRegex.matches(text)
     }
 }
-

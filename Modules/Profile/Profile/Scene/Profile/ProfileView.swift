@@ -53,7 +53,7 @@ public class ProfileView: BaseView<ProfileViewModelInterface> {
         $0.setTitle(data.logoutButtonTitle, for: .normal)
         $0.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
     }
-    
+
     // MARK: - Setups
 
     public override func setup() {

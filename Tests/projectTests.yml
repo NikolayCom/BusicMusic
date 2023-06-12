@@ -34,11 +34,11 @@ targets:
           PRODUCT_BUNDLE_IDENTIFIER: com.basicmusic.appstore
           PRODUCT_NAME: BasicMusic
           DISPLAY_NAME: "$(PRODUCT_NAME) $(CONFIGURATION)"
-    preBuildScripts:
-      - name: swiftLint
-        script: |
-                ${PODS_ROOT}/SwiftLint/swiftlint --config swiftlint.yml
-                
+    # todo: Разобраться с ошибкой компиляции/проверкой внешних зависимостей
+    #postCompileScripts:
+      #- path: Scripts/swiftlint.sh
+        #name: SwiftLint
+
 schemes:
   Debug:
     templates:

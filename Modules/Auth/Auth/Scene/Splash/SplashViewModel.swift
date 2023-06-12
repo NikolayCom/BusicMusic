@@ -36,4 +36,3 @@ extension SplashViewModel: SplashViewModelInterface {}
 // MARK: - SplashInputInterface
 
 extension SplashViewModel: SplashInputInterface {}
-

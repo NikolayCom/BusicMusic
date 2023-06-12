@@ -1,9 +1,9 @@
-import Core
 import Constants
+import Core
+import MediaPlayer
+import Models
 import Resources
 import UIComponents
-import Models
-import MediaPlayer
 
 // MARK: - Constants
 
@@ -64,7 +64,6 @@ public class PlayerView: BaseView<PlayerViewModelInterface> {
         // btn.addTarget(self, action: #selector(_next), for: .touchUpInside)
     }
 
-
     private lazy var slider = UISlider().then {
         $0.maximumValue = 1000
         $0.minimumValue = .zero
@@ -84,7 +83,6 @@ public class PlayerView: BaseView<PlayerViewModelInterface> {
         $0.textColor = appearance.blackColor
     }
 
-
     private lazy var artistNameLabel = UILabel().then {
         $0.text = "unknown"
         $0.font = appearance.nameFont
@@ -92,11 +90,10 @@ public class PlayerView: BaseView<PlayerViewModelInterface> {
     }
 
     private lazy var songTitleLabel = UILabel().then {
-         $0.text = "unknown"
-         $0.font = appearance.titleFont
-         $0.textColor = appearance.blackColor
-     }
-
+        $0.text = "unknown"
+        $0.font = appearance.titleFont
+        $0.textColor = appearance.blackColor
+    }
 
     private lazy var artistImageView = UIImageView().then {
         $0.clipsToBounds = true
@@ -141,7 +138,7 @@ public class PlayerView: BaseView<PlayerViewModelInterface> {
         )
     }
 
-    public override func setupConstraints() {
+    override public func setupConstraints() {
         super.setupConstraints()
 
         playerIconsStackView.snp.makeConstraints {
@@ -187,7 +184,8 @@ public class PlayerView: BaseView<PlayerViewModelInterface> {
         viewModel.playPauseTapped()
     }
 
-    @objc func update(_timer: Timer) {
+    @objc
+    func update(timer: Timer) {
         viewModel.timerUpdated()
         timeLabel.text = viewModel.stringFormatterTimeInterval(interval: TimeInterval(slider.value))
     }
@@ -205,7 +203,13 @@ extension PlayerView: PlayerViewInterface {
     }
 
     public func updateScreenTime(with interval: TimeInterval) {
-        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(
+            timeInterval: 0.1,
+            target: self,
+            selector: #selector(self.update),
+            userInfo: nil,
+            repeats: true
+        )
         slider.maximumValue = Float(interval)
         viewModel.needSetTotalTime()
     }
@@ -215,7 +219,9 @@ extension PlayerView: PlayerViewInterface {
     }
 
     public func configure(with song: Song) {
-        artistImageView.image = Resources.images.animals.image
+        let images = Resources.images
+
+        artistImageView.image = [images.animals, images.hello, images.someoneLikeYou].randomElement()?.image
         artistNameLabel.text = song.artistName
         songTitleLabel.text = song.songTitle
     }

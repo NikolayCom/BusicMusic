@@ -6,8 +6,6 @@ import Resources
 import IQKeyboardManagerSwift
 import NotificationBannerSwift
 
-// swiftlint:disable file_length
-
 // MARK: - Constants
 
 private extension GridConstants {}
@@ -175,8 +173,6 @@ open class BaseViewController<View, ViewModel>: UIViewController {
         (self.contentView as? BaseViewProtocol)?.setupConstraints()
     }
 
-
-
     // MARK: - NavigationBar
 
     open func setupNavBar() {
@@ -188,7 +184,6 @@ open class BaseViewController<View, ViewModel>: UIViewController {
         let backButtonIcon = appearance.navBarBackButtonIcon
         navBarAppearance.setBackIndicatorImage(backButtonIcon, transitionMaskImage: backButtonIcon)
         navigationItem.backButtonDisplayMode = .minimal
-        
         navigationController?.navigationBar.tintColor = appearance.navigationBarTintColor
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.compactAppearance = navBarAppearance

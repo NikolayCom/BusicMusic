@@ -25,7 +25,7 @@ public protocol BaseFirebaseRequestService {
 }
 
 public extension BaseFirebaseRequestService {
-    public func decode<Response: Codable>(ofType: Response.Type, from data: [String: Any]) -> Response? {
+    func decode<Response: Codable>(ofType: Response.Type, from data: [String: Any]) -> Response? {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: data)
             let media = try JSONDecoder().decode(Response.self, from: jsonData)
@@ -37,7 +37,7 @@ public extension BaseFirebaseRequestService {
         }
     }
 
-    public func encode<DataType: Encodable>(data: DataType.Type) -> [String: Any] {
+    func encode<DataType: Encodable>(data: DataType.Type) -> [String: Any] {
         // let dict = try JSONDecoder().decode([String: Any].self, from: JSONEncoder().encode(data))
         return [:]
     }

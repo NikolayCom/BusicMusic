@@ -51,7 +51,7 @@ public class AuthUseCaseImpl: BaseUseCase {
             validationResults.insert(
                 contentsOf: [
                     validateName(name: user.firstName),
-                    validateName(name: user.lastName),
+                    validateName(name: user.lastName)
                 ],
                 at: .zero
             )
@@ -92,10 +92,17 @@ extension AuthUseCaseImpl: AuthUseCase {
         self.firebaseAuthRequestService.signOut(completion: completion)
     }
 
-    public func authWithEmailAccount(with data: EmailUser, screenType: AuthScreenType, completion: @escaping UICompletionResult<EmailUser>) {
+    public func authWithEmailAccount(
+        with data: EmailUser,
+        screenType: AuthScreenType,
+        completion: @escaping UICompletionResult<EmailUser>
+    ) {
         switch validateUserData(with: data, screenType: screenType) {
         case .value:
-            self.firebaseAuthRequestService.authWithEmailAccount(data: data, authType: screenType) { [weak self] result in
+            self.firebaseAuthRequestService.authWithEmailAccount(
+                data: data,
+                authType: screenType
+            ) { result in
                 switch result {
                 case .value:
                     completion(.value(data))
@@ -110,7 +117,9 @@ extension AuthUseCaseImpl: AuthUseCase {
         }
     }
 
-    public func authWithGoogleAccount(instance: UIViewController?, completion: @escaping UICompletionResult<EmailUser>) {
+    public func authWithGoogleAccount(
+        instance: UIViewController?, completion: @escaping UICompletionResult<EmailUser>
+    ) {
         guard let controller = instance else { return }
         self.firebaseAuthRequestService.authWithGoogleAccount(with: controller, completion: completion)
     }

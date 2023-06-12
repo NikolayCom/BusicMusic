@@ -30,7 +30,7 @@ private extension GridConstants {
     var cornerRadius: CGFloat { 2 }
 }
 
-//// MARK: - MainTextFieldDelegate
+// MARK: - MainTextFieldDelegate
 public protocol MainTextFieldDelegate: AnyObject {
     func textFieldEditing(text: String, id: String)
 }
@@ -202,4 +202,3 @@ extension MainTextFieldView: UITextFieldDelegate {
         self.delegate?.textFieldEditing(text: self.textField.text.orEmpty, id: self.id)
     }
 }
-

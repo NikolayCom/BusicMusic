@@ -150,4 +150,3 @@ extension SignInUpView: SignInUpViewInterface {
         subTitleLabel.text = subtitle
     }
 }
-

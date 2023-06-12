@@ -10,9 +10,9 @@ public final class EmailViewController: BaseViewController<
     EmailViewInterface,
     EmailViewModelInterface
 > {
-    public override var shouldHideKeyboardOnTouchOutside: Bool { true }
+    override public var shouldHideKeyboardOnTouchOutside: Bool { true }
 
-    public override func setup() {
+    override public func setup() {
         super.setup()
 
         pinContentView()

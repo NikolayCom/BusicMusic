@@ -24,7 +24,10 @@ public class HomeBoxView: BaseView<HomeBoxViewModelInterface> {
         $0.dataSource = self
         $0.backgroundColor = .clear
         $0.register(class: HomeBoxCollectionViewCell.self)
-        $0.register(supplementaryClass: HomeBoxHeaderCollectionSectionView.self, kind: UICollectionView.elementKindSectionHeader)
+        $0.register(
+            supplementaryClass: HomeBoxHeaderCollectionSectionView.self,
+            kind: UICollectionView.elementKindSectionHeader
+        )
         $0.setCollectionViewLayout(self.getCollectionLayout(), animated: true)
     }
 
@@ -62,7 +65,6 @@ private extension HomeBoxView {
             case .rectangle:
                 return .verticalListSection(layoutEnvironment: layoutEnvironment)
             }
-
         }
     }
 }

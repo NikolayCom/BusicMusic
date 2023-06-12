@@ -17,4 +17,3 @@ class RequestsAssemblyImpl: RequestsAssembly {
 
     lazy var musicRequestService: MusicRequestService = MusicRequestServiceImpl()
 }
-

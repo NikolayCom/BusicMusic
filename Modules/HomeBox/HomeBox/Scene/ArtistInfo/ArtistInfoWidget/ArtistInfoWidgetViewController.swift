@@ -24,10 +24,10 @@ public final class ArtistInfoWidgetViewController: BaseViewController<
 > {
 
     public lazy var shape: WidgetShapeType = .fixedSize(grid.cellHeight)
-    
+
     public lazy var sectionTitle: String = data.title
 
-    public override func setup() {
+    override public func setup() {
         super.setup()
 
         pinContentViewFull()

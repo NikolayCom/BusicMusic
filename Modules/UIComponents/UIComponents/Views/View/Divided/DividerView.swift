@@ -29,7 +29,6 @@ public final class DividerView: UIView {
 
     // MARK: - Configure
 
-
     private func setupUI() {
         addSubview(self.dividedView)
     }
@@ -41,4 +40,3 @@ public final class DividerView: UIView {
         }
     }
 }
-

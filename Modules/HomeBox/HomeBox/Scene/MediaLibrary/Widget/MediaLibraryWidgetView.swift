@@ -25,7 +25,7 @@ public class MediaLibraryWidgetView: BaseView<MediaLibraryWidgetViewModelInterfa
         $0.isUserInteractionEnabled = true
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(actionButtonTapped)))
     }
-    
+
     // MARK: - Setups
 
     public override func setup() {

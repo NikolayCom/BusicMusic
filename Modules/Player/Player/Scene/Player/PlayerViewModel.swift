@@ -20,7 +20,7 @@ public final class PlayerViewModel: BaseViewModel<
     PlayerConfigModel
 > {
 
-    public override func viewAppeared() {
+    override public func viewAppeared() {
         super.viewAppeared()
 
         guard let player = self.config.dependency?.playerUseCase, player.isPlaying else { return }
@@ -31,7 +31,6 @@ public final class PlayerViewModel: BaseViewModel<
 
         view.updateScreenTime(with: player.duration)
         view.setPauseImage(image: Resources.images.play.image)
-
     }
 
     public override func viewLoaded() {
@@ -43,7 +42,6 @@ public final class PlayerViewModel: BaseViewModel<
         self.view.configure(with: player.getNowPlayingInfo())
         view.updateScreenTime(with: player.duration)
         player.setUpRemoteTransparentControls()
-
     }
 }
 
@@ -63,10 +61,10 @@ extension PlayerViewModel: PlayerViewModelInterface {
     }
 
     public func stringFormatterTimeInterval(interval: TimeInterval) -> String {
-        let ti = NSInteger(interval)
-        let second = ti % 60
-        let minutes = ( ti / 60) % 60
-        return NSString(format: "%0.2d:%0.2d", minutes,second) as! String
+        let time = NSInteger(interval)
+        let second = time % 60
+        let minutes = (time / 60) % 60
+        return NSString(format: "%0.2d:%0.2d", minutes, second) as! String
     }
 
     public func sliderMove(interval: TimeInterval) {

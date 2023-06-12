@@ -110,7 +110,7 @@ public class ShazamSearchView: BaseView<ShazamSearchViewModelInterface> {
 
         pulsatorLayer.frame.origin = buttonAnimationView.center
     }
-    
+
     // MARK: - Setups
 
     public override func setup() {

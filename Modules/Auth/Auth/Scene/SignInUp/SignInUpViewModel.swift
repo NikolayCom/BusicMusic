@@ -17,7 +17,7 @@ final class SignInUpViewModel: BaseViewModel<
 > {
     override func viewLoaded() {
         super.viewLoaded()
-        
+
         self.configure()
     }
 

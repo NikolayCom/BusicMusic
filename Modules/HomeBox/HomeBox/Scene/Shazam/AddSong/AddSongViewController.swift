@@ -11,7 +11,7 @@ public final class AddSongViewController: BaseViewController<
     AddSongViewModelInterface
 > {
 
-    public override func setup() {
+    override public func setup() {
         super.setup()
 
         pinContentViewFull()

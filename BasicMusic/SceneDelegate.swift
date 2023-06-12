@@ -31,9 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     // MARK: Private methods
 
-    private func setNavigationBarAppearance() {
-        
-    }
+    private func setNavigationBarAppearance() { }
 
     private func setupAuth() {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene

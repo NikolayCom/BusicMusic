@@ -9,13 +9,13 @@ public protocol AddSongViewModelInterface: BaseViewModelInterface {
 }
 
 // MARK: - AddSongViewModel
-
+//  swiftlint:disable line_length
 public final class AddSongViewModel: BaseViewModel<
     AddSongViewControllerInterface,
     AddSongViewInterface,
     AddSongConfigModel
 > {
-    public override func viewLoaded() {
+    override public func viewLoaded() {
         super.viewLoaded()
 
         let data: [ShazamMedia] = [

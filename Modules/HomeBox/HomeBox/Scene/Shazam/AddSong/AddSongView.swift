@@ -1,8 +1,8 @@
-import Core
 import Constants
+import Core
+import SDWebImage
 import Resources
 import UIComponents
-import SDWebImage
 
 // MARK: - Constants
 
@@ -69,11 +69,11 @@ public class AddSongView: BaseView<AddSongViewModelInterface> {
 
     // MARK: - Setups
 
-    public override func setup() {
+    override public func setup() {
         super.setup()
     }
 
-    public override func setupUI() {
+    override public func setupUI() {
         super.setupUI()
 
         self.buttonsContainerStackView.addArrangedSubviews(
@@ -107,7 +107,7 @@ public class AddSongView: BaseView<AddSongViewModelInterface> {
         )
     }
 
-    public override func setupConstraints() {
+    override public func setupConstraints() {
         super.setupConstraints()
 
         self.containerStackView.snp.makeConstraints {
@@ -138,13 +138,15 @@ private extension AddSongView {
 }
 
 // MARK: - AddSongView
-
-extension AddSongView: AddSongViewInterface {   
+extension AddSongView: AddSongViewInterface {
     public func configureViewWith(title: String?, subtitle: String?, imageUrl: URL?) {
         titleLabel.text = title
         subtitleLabel.text = subtitle
 
-        LoadImageView.loadImage(stringUrl: (imageUrl?.absoluteString).orEmpty, placeholder: nil) { [weak self] image, _ in
+        LoadImageView.loadImage(
+            stringUrl: (imageUrl?.absoluteString).orEmpty,
+            placeholder: nil
+        ) { [weak self] image, _ in
             self?.artistImageView.image = image
         }
     }

@@ -2,6 +2,7 @@ import Core
 import UIComponents
 import Constants
 import Resources
+import Then
 
 private extension AppearanceConstants {
     var titleFont: UIFont { Resources.font(type: .bold, size: 16) }
@@ -29,25 +30,25 @@ class ArtistInfoCollectionViewCell: BaseCollectionViewCell {
     }
 
     private lazy var typeLabel = UILabel().then {
-        $0.font = appearance.subtitleFont
+        $0.font = appearance.titleFont
         $0.textColor = appearance.blackColor
         $0.numberOfLines = .zero
     }
 
     private lazy var genderLabel = UILabel().then {
-        $0.font = appearance.subtitleFont
+        $0.font = appearance.titleFont
         $0.textColor = appearance.blackColor
         $0.numberOfLines = .zero
     }
 
     private lazy var countryLabel = UILabel().then {
-        $0.font = appearance.subtitleFont
+        $0.font = appearance.titleFont
         $0.textColor = appearance.blackColor
         $0.numberOfLines = .zero
     }
 
     private lazy var disambiguationLabel = UILabel().then {
-        $0.font = appearance.subtitleFont
+        $0.font = appearance.titleFont
         $0.textColor = appearance.blackColor
         $0.numberOfLines = .zero
     }

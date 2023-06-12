@@ -34,7 +34,6 @@ public class ArtistInfoView: BaseView<ArtistInfoViewModelInterface> {
         $0.delegate = self
         $0.showsBookmarkButton = true
         $0.placeholder = data.placeholder
-
     }
 
     // MARK: - Setups
@@ -54,7 +53,7 @@ public class ArtistInfoView: BaseView<ArtistInfoViewModelInterface> {
         )
     }
 
-    public override func setupConstraints() {
+    override public func setupConstraints() {
         super.setupConstraints()
 
         searchBar.snp.makeConstraints {
@@ -71,7 +70,7 @@ public class ArtistInfoView: BaseView<ArtistInfoViewModelInterface> {
 
 private extension ArtistInfoView {
     private func getCollectionLayout() -> UICollectionViewCompositionalLayout {
-        UICollectionViewCompositionalLayout { [weak self] _, layoutEnvironment in
+        UICollectionViewCompositionalLayout { _, layoutEnvironment in
             return .verticalListSection(layoutEnvironment: layoutEnvironment)
         }
     }

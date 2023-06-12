@@ -5,12 +5,11 @@ private extension AppearanceConstants {
     var backgroundColor: UIColor? { self.blackColor.withAlphaComponent(0.6) }
 }
 
-
 @available(iOS 13.0, *)
 public class ActivityIndicator: UIView {
     public var isShowing: Bool {
-        set { newValue ? indicator.startAnimating() : stopAnimating() }
         get { indicator.isAnimating }
+        set { newValue ? indicator.startAnimating() : stopAnimating() }
     }
 
     private lazy var indicator = UIActivityIndicatorView(style: .large)

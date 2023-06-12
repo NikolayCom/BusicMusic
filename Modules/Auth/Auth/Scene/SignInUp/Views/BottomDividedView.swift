@@ -84,8 +84,7 @@ public final class BottomDividedView: UIView {
         }
     }
 
-    // MARK: -  Actions
-
+// MARK: - Actions
     @objc
     func didTap() {
         guard let viewModel = viewModel else { return }
@@ -95,8 +94,8 @@ public final class BottomDividedView: UIView {
 
 // MARK: - BottomDividedView + Configure
 
-extension BottomDividedView {
-    public func configure(with model: BottomDividedViewModel) {
+public extension BottomDividedView {
+    func configure(with model: BottomDividedViewModel) {
         self.viewModel = model
 
         self.textLabel.text = model.title

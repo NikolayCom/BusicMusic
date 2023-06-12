@@ -61,8 +61,18 @@ public class PlayerUseCaseImpl: NSObject, BaseUseCase {
 
     private func setupNotifications() {
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(handleInterruption), name: AVAudioSession.interruptionNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(handleRouteChange), name: AVAudioSession.routeChangeNotification, object: nil)
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(handleInterruption),
+            name: AVAudioSession.interruptionNotification,
+            object: nil
+        )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(handleRouteChange),
+            name: AVAudioSession.routeChangeNotification,
+            object: nil
+        )
     }
 
     private func setCoverImage() {
@@ -73,10 +83,12 @@ public class PlayerUseCaseImpl: NSObject, BaseUseCase {
         }
     }
 
-    @objc func handleInterruption(notification: Notification ) {
-        guard let userInfo = notification.userInfo,
-              let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
-              let type = AVAudioSession.InterruptionType(rawValue:  typeValue)
+    @objc
+    func handleInterruption(notification: Notification) {
+        guard
+            let userInfo = notification.userInfo,
+            let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+            let type = AVAudioSession.InterruptionType(rawValue: typeValue)
         else { return }
 
         if type == .began {
@@ -94,10 +106,12 @@ public class PlayerUseCaseImpl: NSObject, BaseUseCase {
         }
     }
 
-    @objc func handleRouteChange (notificaiton :Notification) {
-        guard let userInfo = notificaiton.userInfo,
-              let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
-              let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue)
+    @objc
+    func handleRouteChange(notificaiton: Notification) {
+        guard
+            let userInfo = notificaiton.userInfo,
+            let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
+            let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue)
         else { return }
 
         switch reason {
@@ -109,11 +123,10 @@ public class PlayerUseCaseImpl: NSObject, BaseUseCase {
                     self.playThisSong(activeSong: activeSong.orEmpty)
                 }
             }
-            break
 
         case .oldDeviceUnavailable:
             if let previusChange = userInfo[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription {
-                for output in previusChange.outputs where output.portType == AVAudioSession.Port.headphones{
+                for output in previusChange.outputs where output.portType == AVAudioSession.Port.headphones {
                     print("headphones disconnected")
                     DispatchQueue.main.sync {
                         if audioPlayer.isPlaying {
@@ -123,14 +136,13 @@ public class PlayerUseCaseImpl: NSObject, BaseUseCase {
                 }
             }
 
-            break
-
         default:
-            ()
+            break
         }
     }
 
-    @objc func changeThumbSlider (_ event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
+    @objc
+    func changeThumbSlider(_ event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
         slide(with: event.positionTime)
 
         return .success
@@ -146,7 +158,7 @@ extension PlayerUseCaseImpl: PlayerUseCase {
             try audioPlayer = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
             audioPlayer.prepareToPlay()
             audioPlayer.delegate = self
-        } catch{
+        } catch {
             print(error.localizedDescription)
         }
     }
@@ -154,11 +166,14 @@ extension PlayerUseCaseImpl: PlayerUseCase {
     public func setupSongs() {
         let folderUrl = URL(fileURLWithPath: Bundle.main.resourcePath!)
         do {
-            let path = try FileManager.default.contentsOfDirectory(at: folderUrl,includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+            let path = try FileManager.default.contentsOfDirectory(
+                at: folderUrl,
+                includingPropertiesForKeys: nil,
+                options: .skipsHiddenFiles
+            )
             path.forEach { song in
                 var songName = song.absoluteString
-                if songName.contains(".mp3")
-                {
+                if songName.contains(".mp3") {
                     let findString = songName.components(separatedBy: "/")
                     songName = findString[findString.count - 1]
                     songName = songName.replacingOccurrences(of: "%20", with: " ")
@@ -174,13 +189,13 @@ extension PlayerUseCaseImpl: PlayerUseCase {
     public func playPause() {
         if audioPlayer.isPlaying {
             audioPlayer.pause()
-        }else{
+        } else {
             audioPlayer.play()
         }
     }
 
     public func slide(with interval: TimeInterval) {
-        audioPlayer.currentTime =  interval
+        audioPlayer.currentTime = interval
     }
 
     public func getNowPlayingInfo() -> Song {
@@ -235,8 +250,7 @@ extension PlayerUseCaseImpl: PlayerUseCase {
             let audioPath = Bundle.main.path(forResource: activeSong, ofType: ".mp3")
             try audioPlayer = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: audioPath!) as URL)
             audioPlayer.prepareToPlay()
-        }
-        catch {
+        } catch {
             print(error.localizedDescription)
         }
     }
@@ -244,13 +258,11 @@ extension PlayerUseCaseImpl: PlayerUseCase {
 
 extension PlayerUseCaseImpl: AVAudioPlayerDelegate {}
 
-
-extension PlayerUseCaseImpl {
-    public func setUpRemoteTransparentControls() {
+public extension PlayerUseCaseImpl {
+    func setUpRemoteTransparentControls() {
         let commandCenter = MPRemoteCommandCenter.shared()
-        commandCenter.playCommand.addTarget{
-            event in
-            if !self.audioPlayer.isPlaying{
+        commandCenter.playCommand.addTarget { _ in
+            if !self.audioPlayer.isPlaying {
                 self.playPause()
                 self.setCoverImage()
 
@@ -259,8 +271,7 @@ extension PlayerUseCaseImpl {
             return .commandFailed
         }
 
-        commandCenter.pauseCommand.addTarget{
-            event in
+        commandCenter.pauseCommand.addTarget { _ in
             if self.audioPlayer.isPlaying {
                 self.audioPlayer.pause()
 
@@ -269,8 +280,7 @@ extension PlayerUseCaseImpl {
             return .commandFailed
         }
 
-        commandCenter.nextTrackCommand.addTarget{
-            event in
+        commandCenter.nextTrackCommand.addTarget { _ in
             if self.audioPlayer.isPlaying {
                 // self._next()
                 self.setCoverImage()
@@ -279,8 +289,7 @@ extension PlayerUseCaseImpl {
             return .commandFailed
         }
 
-        commandCenter.previousTrackCommand.addTarget{
-            event in
+        commandCenter.previousTrackCommand.addTarget { _ in
             if self.audioPlayer.isPlaying {
                 // self._back()
                 self.setCoverImage()

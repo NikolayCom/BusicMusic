@@ -25,7 +25,7 @@ public final class EmailViewModel: BaseViewModel<
 
     public var userModel = EmailUser()
 
-    public override func viewLoaded() {
+    override public func viewLoaded() {
         super.viewLoaded()
 
         configureView()
@@ -52,7 +52,8 @@ public final class EmailViewModel: BaseViewModel<
 
     private func performEmailAuth(completion: @escaping Action) {
         self.config.dependency?.authUseCase.authWithEmailAccount(
-            with: self.userModel, screenType: self.config.screenType
+            with: self.userModel,
+            screenType: self.config.screenType
         ) { [weak self] result in
             guard let self = self else { return }
             self.controller.hideHud()

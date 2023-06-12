@@ -46,13 +46,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func configurePlayer() {
         let audioSession = AVAudioSession.sharedInstance()
-        do
-        {
-            try audioSession.setCategory(AVAudioSession.Category.playback , mode:  AVAudioSession.Mode.default)
-
+        do {
+            try audioSession.setCategory(
+                AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default
+            )
         } catch let error as NSError {
             print("playback failed : \(error)")
         }
     }
 }
-

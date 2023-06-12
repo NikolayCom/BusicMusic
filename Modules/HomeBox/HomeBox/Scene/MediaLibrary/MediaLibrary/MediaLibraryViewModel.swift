@@ -54,7 +54,7 @@ private extension MediaLibraryViewModel {
                     MediaCollectionViewModel(
                         artist: $0.artistName,
                         song: $0.title,
-                        isDownloaded: false,
+                        isDownloaded: Bool.random(),
                         imageUrl: $0.albumArtURL,
                         id: UUID().uuidString,
                         delegate: self

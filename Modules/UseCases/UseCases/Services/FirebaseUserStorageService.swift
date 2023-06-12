@@ -28,7 +28,9 @@ class FirebaseUserStorageServiceImpl: BackgroundWorker, BaseFirebaseRequestServi
 // MARK: Private
 
 private extension FirebaseUserStorageServiceImpl {
-    private func convertReferencesToDictionary(references: [DocumentReference], completion: @escaping UICompletionResult<[DBData]>) {
+    private func convertReferencesToDictionary(
+        references: [DocumentReference], completion: @escaping UICompletionResult<[DBData]>
+    ) {
         let dispatchGroup = DispatchGroup()
 
         var result: [DBData] = []
@@ -62,7 +64,7 @@ private extension FirebaseUserStorageServiceImpl {
         with requests: [DBRequest],
         completion: @escaping UICompletionResult<[DocumentReference]>
     ) {
-        /// Если путь пустой - завершаем процесс
+        // Если путь пустой - завершаем процесс
         guard let first = requests.first else { return completion(.error(.firebaseStorage(message: nil))) }
 
         let rootCollection = database.collection(first.collection.rawValue)
@@ -83,16 +85,24 @@ private extension FirebaseUserStorageServiceImpl {
         currentDocId: String?,
         completion: @escaping UICompletionResult<[DocumentReference]>
     ) {
-        /// Проверка нужно ли проваливаться дальше по иерархии или вернуть последний документ с нужным id
+        // Проверка нужно ли проваливаться дальше по иерархии или вернуть последний документ с нужным id
         guard let currentRequest = requests[safe: nextItemIndex] else {
             if let currentDocId {
-                currentCollection.document(currentDocId).getDocument { documentSnapshot, error in
-                    guard error == nil else { return completion(.error(.firebaseStorage(message: error?.localizedDescription))) }
+                currentCollection.document(currentDocId).getDocument { _, error in
+                    guard error == nil else {
+                        return completion(
+                            .error(.firebaseStorage(message: error?.localizedDescription))
+                        )
+                    }
                     completion(.value([currentCollection.document(currentDocId)]))
                 }
             } else {
                 currentCollection.getDocuments { documentSnapshot, error in
-                    guard error == nil else { return completion(.error(.firebaseStorage(message: error?.localizedDescription))) }
+                    guard error == nil else {
+                        return completion(
+                            .error(.firebaseStorage(message: error?.localizedDescription))
+                        )
+                    }
                     completion(.value(documentSnapshot?.documents.map { $0.reference } ?? []))
                 }
             }
@@ -100,7 +110,7 @@ private extension FirebaseUserStorageServiceImpl {
             return
         }
 
-        /// Только последний запрос может не иметь ID --> Значит нужно вернуть все элементы коллекции
+        // Только последний запрос может не иметь ID --> Значит нужно вернуть все элементы коллекции
         assert(currentDocId != nil, "Invalid request, no document id was specified to search for the next collection.")
 
         getDocumentReferences(

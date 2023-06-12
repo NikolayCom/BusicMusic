@@ -57,4 +57,3 @@ extension NSCollectionLayoutSection: GridConstantsInterface {
         return section
     }
 }
-

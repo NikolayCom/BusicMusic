@@ -11,7 +11,7 @@ public final class ArtistInfoCoordinator: BaseCoordinator {
         super.init(navigationController: assembly.rootAssembly.commonNavigation)
     }
 
-    public override func start() {
+    override public func start() {
         showArtistInfo()
     }
 

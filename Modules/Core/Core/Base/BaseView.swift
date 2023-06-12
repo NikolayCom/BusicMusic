@@ -31,7 +31,6 @@ protocol BaseViewProtocol {
 // MARK: - BaseViewController
 
 open class BaseView<ViewModel>: UIView {
-    
     public var viewModel: ViewModel!
 
     open func viewWillAppear() {}

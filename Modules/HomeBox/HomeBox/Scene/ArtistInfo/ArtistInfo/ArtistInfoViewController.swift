@@ -10,7 +10,7 @@ public final class ArtistInfoViewController: BaseViewController<
     ArtistInfoViewInterface,
     ArtistInfoViewModelInterface
 > {
-    public override func setup() {
+    override public func setup() {
         super.setup()
 
         pinContentViewBottom()

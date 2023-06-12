@@ -25,7 +25,7 @@ extension ProfileViewModel: ProfileViewModelInterface {
     public func logoutButtonTapped() {
         self.config.dependency?.authUseCase.logout { [weak self] result in
             switch result {
-            case .value(()):
+            case .value:
                 self?.config.output?.showSplash()
 
             case .error(let error):

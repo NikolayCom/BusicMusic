@@ -30,4 +30,3 @@ public struct Artist {
         self.disambiguation = disambiguation
     }
 }
-

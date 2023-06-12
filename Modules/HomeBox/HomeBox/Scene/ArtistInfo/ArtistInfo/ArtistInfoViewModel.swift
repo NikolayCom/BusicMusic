@@ -32,8 +32,8 @@ public final class ArtistInfoViewModel: BaseViewModel<
             startTimer()
         }
     }
-    
-    public override func viewLoaded() {
+
+    override public func viewLoaded() {
         super.viewLoaded()
     }
 }

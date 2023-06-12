@@ -35,4 +35,3 @@ extension Artist: Codable {
 
     public func encode(to _: Encoder) throws {}
 }
-
